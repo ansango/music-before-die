@@ -4,8 +4,8 @@ import "../styles/globals.css";
 import { Inter, Bebas_Neue, PT_Serif } from "next/font/google";
 
 export const metadata = {
-  title: "Music before die | Aníbal Santos",
-  description: "Music you should listen before die",
+  title: "Música antes de morir | Aníbal Santos",
+  description: "Música que escuchar antes de irse para el otro barrio",
   authors: [
     {
       name: "Anibal Santos",
@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    siteName: "Anibal Santos",
+    siteName: "Música antes de morir",
     countryName: "Spain",
     emails: ["anibalsantosgo@gmail.com"],
   },

@@ -1,7 +1,7 @@
 {
-  "name": "Music before you die",
-  "short_name": "music before die",
-  "description": "Music should listen before you die",
+  "name": "Música antes de morir",
+  "short_name": "Música antes de morir",
+  "description": "Música que escuchar antes de ir para el otro barrio",
   "start_url": ".",
   "icons": [
     {

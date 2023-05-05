@@ -1,5 +1,5 @@
 User-agent: *
 TODO: change sitemap domain
-Sitemap: https://anibalsantosgomez.com/sitemap.xml
+Sitemap: https://music.ansango.com/sitemap.xml
 
 
