@@ -8,8 +8,12 @@ const nextConfig = {
         destination: "/admin/index.html",
       },
       {
-        source: "/",
-        destination: "/index",
+        source: "/es",
+        destination: "/es/index",
+      },
+      {
+        source: "/en",
+        destination: "/en/index",
       },
     ];
   },

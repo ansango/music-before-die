@@ -1,14 +1,22 @@
 import { defineConfig } from "tinacms";
 
 import { heroBaseTemplate, bodySimpleTemplate } from "./templates";
+import { kebabCase } from "../src/lib";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
 
+type Lang = "EN" | "ES";
+
+const langTypes: Record<Lang, string> = {
+  ES: "es",
+  EN: "en",
+};
+
 export default defineConfig({
   branch,
-  clientId: "539380bd-cfb1-46d1-a439-2b4a08335927", // Get this from tina.io
-  token: "068bb1b9d6ccbae39e4901ddd85f846507dbd71b", // Get this from tina.io
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "local",
+  token: process.env.TINA_TOKEN || "dummy",
 
   build: {
     outputFolder: "admin",
@@ -51,11 +59,27 @@ export default defineConfig({
         name: "page",
         path: "src/content/pages",
         format: "mdx",
+        ui: {
+          filename: {
+            readonly: true,
+            slugify: ({ title, lang }) => {
+              return title && `${langTypes[lang as Lang]}/${kebabCase(title)}`;
+            },
+          },
+        },
         fields: [
           {
             name: "visible",
             label: "Visible",
             type: "boolean",
+          },
+          {
+            name: "lang",
+            label: "Language",
+            type: "string",
+
+            options: ["EN", "ES"],
+            required: true,
           },
           {
             type: "string",

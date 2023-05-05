@@ -1,7 +1,18 @@
 import type { ReactNode } from "react";
 
-import "../styles/globals.css";
+import "../../styles/globals.css";
 import { Inter, Bebas_Neue, PT_Serif } from "next/font/google";
+
+import type { Locale } from "../../i18n-config";
+import { i18n } from "../../i18n-config";
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
+type Params = {
+  lang: Locale;
+};
 
 export const metadata = {
   title: "Música antes de morir | Aníbal Santos",
@@ -53,12 +64,18 @@ const sans = Inter({
   display: "swap",
 });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+  params: { lang },
+}: {
+  children: ReactNode;
+  params: Params;
+}) {
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
   const cnBody = `min-h-screen flex flex-col ${fonts} ${debugCn}`;
   return (
-    <html lang="en">
+    <html lang={lang}>
       <link href="/site.webmanifest" rel="manifest" />
       <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
       <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />

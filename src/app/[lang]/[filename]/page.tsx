@@ -6,14 +6,17 @@ import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
 import { getPage, getPageConnection } from "@/lib";
 
-import type { PageBlocks } from "../../../tina/__generated__/types";
+import type { PageBlocks } from "../../../../tina/__generated__/types";
 
 type Params = {
   filename: string;
+  lang: string;
 };
 
 type PageTina = {
-  _sys: Params;
+  _sys: {
+    filename: string;
+  };
 };
 
 export async function generateStaticParams() {
@@ -32,11 +35,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     params.filename === "index" ? "" : `/${params.filename}`
   }`;
   return {
-    title: `${data?.title ?? "Música antes de morir"} | Aníbal Santos Gómez `,
+    title: `${data?.title ?? "X"} | Música antes de morir`,
     description: data?.description,
     openGraph: {
       type: "website",
-      title: `${data?.title ?? "Música antes de morir"} | Aníbal Santos Gómez `,
+      title: `${data?.title ?? "X"} | Música antes de morir`,
       description: data?.description ?? "Música antes de morir",
       url,
     },
@@ -50,6 +53,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function Page({ params }: { params: Params }) {
+  console.log("params", params);
   const data = await getPage({ params });
   const blocks = data?.blocks as Array<PageBlocks>;
   if (!data || !data.visible || !blocks) notFound();

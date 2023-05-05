@@ -2,10 +2,11 @@ import tinaClient from "../../../tina/__generated__/client";
 
 type Params = {
   filename: string;
+  lang: string;
 };
 
 export async function getPage({ params }: { params: Params }) {
-  const args = { relativePath: `${params.filename}.mdx` };
+  const args = { relativePath: `${params.lang}/${params.filename}.mdx` };
 
   try {
     const {
