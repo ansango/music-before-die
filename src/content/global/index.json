@@ -1,0 +1,21 @@
+{
+  "navigation": [
+    {
+      "visible": true,
+      "href": "",
+      "label": "inicio"
+    }
+  ],
+  "social": [
+    {
+      "visible": true,
+      "href": "https://www.instagram.com/iamasync/",
+      "label": "instagram"
+    },
+    {
+      "visible": false,
+      "href": "https://github.com/ansango/",
+      "label": "github"
+    }
+  ]
+}
