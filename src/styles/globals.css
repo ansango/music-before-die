@@ -27,7 +27,7 @@ html.dark {
 }
 
 html {
-  @apply h-full motion-safe: scroll-smooth;
+  @apply h-full motion-safe:scroll-smooth;
 }
 
 body,

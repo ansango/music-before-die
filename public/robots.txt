@@ -1,0 +1,5 @@
+User-agent: *
+TODO: change sitemap domain
+Sitemap: https://anibalsantosgomez.com/sitemap.xml
+
+
