@@ -2,7 +2,6 @@ import type { FC } from "react";
 
 import Balancer from "react-wrap-balancer";
 import type { Template } from "tinacms";
-import type { TinaMarkdownContent } from "tinacms/dist/rich-text";
 
 import { Container } from "../../container";
 import { Section } from "../../section";
@@ -13,12 +12,11 @@ export type HeroBaseProps = {
   text?: string;
   align: "left" | "center" | "right" | null;
   rotationTitle: "left" | "center" | "right" | null;
-  parragraph?: TinaMarkdownContent;
   backgroundLight?: string;
   backgroundDark?: string;
 };
 
-const algignCnText = {
+const alignCnText = {
   left: "text-left",
   center: "text-center",
   right: "text-right",
@@ -46,7 +44,7 @@ export const HeroBase: FC<HeroBaseProps> = ({
   backgroundDark,
 }) => {
   const cnContainer = align && alignCnContainer[align];
-  const cnText = align && algignCnText[align];
+  const cnText = align && alignCnText[align];
   const cnRotationTitle = rotationTitle && rotationTitleCn[rotationTitle];
 
   return (

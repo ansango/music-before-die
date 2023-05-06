@@ -2,13 +2,9 @@ import type { FC } from "react";
 
 import Link from "next/link";
 
-import { Container } from "../container";
+import { useGetLocale } from "@/lib";
 
-type LinkJSON = {
-  label: string;
-  href: string;
-  visible?: boolean;
-};
+import { Container } from "../container";
 
 type Props = {
   navigation: Array<LinkJSON>;
@@ -16,6 +12,7 @@ type Props = {
 };
 
 export const Footer: FC<Props> = ({ navigation, social }) => {
+  const { locale } = useGetLocale();
   return (
     <footer className="pt-20">
       <Container>
@@ -23,11 +20,14 @@ export const Footer: FC<Props> = ({ navigation, social }) => {
           <ul className="flex flex-col items-end space-y-2">
             {navigation
               .filter((item) => item.visible)
-              .map((item, i) => (
-                <li key={`${item.label}-${i}`}>
-                  <Link href={`/${item.href}`}>{item.label}</Link>
-                </li>
-              ))}
+              .map((item, i) => {
+                const route = `/${locale}/${item.href}`;
+                return (
+                  <li key={`${item.label}-${i}`}>
+                    <Link href={route}>{item.label}</Link>
+                  </li>
+                );
+              })}
           </ul>
           <ul className="flex flex-col items-end space-y-2">
             {social

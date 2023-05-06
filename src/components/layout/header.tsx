@@ -7,15 +7,9 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
 import { i18n } from "@/i18n-config";
-import { useMounted } from "@/lib";
+import { useGetLocale, useMounted } from "@/lib";
 
 import { Container } from "../container";
-
-type LinkJSON = {
-  label: string;
-  href: string;
-  visible?: boolean;
-};
 
 type Props = {
   navigation: Array<LinkJSON>;
@@ -63,21 +57,9 @@ const ThemeChanger = () => {
   );
 };
 
-const getLocale = (pathname: string | null) => {
-  if (!pathname) pathname = "/";
-  const segments = pathname.split("/");
-  return segments[1];
-};
-
 const LocaleSwitcher = () => {
-  const pathname = usePathname();
-  const locale = getLocale(pathname);
-  const redirectedPathName = (locale: string) => {
-    if (!pathname) return "/";
-    const segments = pathname.split("/");
-    segments[1] = locale;
-    return segments.join("/");
-  };
+  const { locale, redirectedPathName } = useGetLocale();
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="flex items-center justify-center px-2 uppercase bg-gray-300 rounded-md h-9 text-primary bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -110,6 +92,7 @@ const LocaleSwitcher = () => {
 
 export const Header: FC<Props> = ({ navigation }) => {
   const segment = usePathname();
+  const { locale } = useGetLocale();
 
   return (
     <header>
@@ -120,12 +103,14 @@ export const Header: FC<Props> = ({ navigation }) => {
             {navigation
               .filter((item) => item.visible)
               .map((item, i) => {
+                const route = `/${locale}/${item.href}`;
+                const isActive = `${segment}/` === route;
                 return (
                   <li key={`${item.label}-${i}`}>
                     <Link
-                      href={`/${item.href}`}
+                      href={route}
                       className={
-                        segment === `/${item.href}`
+                        isActive
                           ? "underline underline-offset-4 block odd:rotate-[1.5deg] even:-rotate-[1.5deg]"
                           : ""
                       }

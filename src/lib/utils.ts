@@ -36,3 +36,6 @@ export const formatDate = (
 
   return now;
 };
+
+export const replacePagePath = (path: string) =>
+  path.replace("src/content/pages/", "").replace(".mdx", "");

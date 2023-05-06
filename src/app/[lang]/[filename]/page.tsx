@@ -4,39 +4,50 @@ import type { TinaMarkdownContent } from "tinacms/dist/rich-text";
 
 import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
-import { getPage, getPageConnection } from "@/lib";
+import type { Locale } from "@/i18n-config";
+import { i18n } from "@/i18n-config";
+import { getAllPagesConnection, replacePagePath, getPageLocale } from "@/lib";
 
-import type { PageBlocks } from "../../../../tina/__generated__/types";
+import type { En_PageBlocks, Es_PageBlocks } from "../../../../tina/__generated__/types";
+
+type PageBlocks = En_PageBlocks | Es_PageBlocks;
 
 type Params = {
   filename: string;
-  lang: string;
+  lang: Locale;
 };
 
 type PageTina = {
   _sys: {
     filename: string;
+    path: string;
   };
 };
 
 export async function generateStaticParams() {
-  const pages = (await getPageConnection()) as Array<PageTina>;
-  const map = pages.map((page) => ({
+  const pages = (await getAllPagesConnection()) as Array<PageTina>;
+
+  return pages.map((page) => ({
     params: {
       filename: page._sys.filename,
+      lang: replacePagePath(page._sys.path).split("/")[0],
     },
   }));
-  return map;
+}
+
+async function getPage({ params: { filename, lang } }: { params: Params }) {
+  return await getPageLocale[lang]({ params: { filename } });
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const data = await getPage({ params });
-  const url = `${process.env.NEXT_PUBLIC_WEB_URI}${
-    params.filename === "index" ? "" : `/${params.filename}`
+  const url = `${process.env.NEXT_PUBLIC_WEB_URI}/${
+    params.filename === "index" ? params.lang : `${params.lang}/${params.filename}`
   }`;
+
   return {
     title: `${data?.title ?? "X"} | Música antes de morir`,
-    description: data?.description,
+    description: data?.description ?? "Música antes de morir",
     openGraph: {
       type: "website",
       title: `${data?.title ?? "X"} | Música antes de morir`,
@@ -45,9 +56,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     },
     alternates: {
       canonical: url,
-      languages: {
-        es: url,
-      },
+      languages: i18n.locales.reduce(
+        (acc, cur) => ({
+          ...acc,
+          [cur]: `${process.env.NEXT_PUBLIC_WEB_URI}/${
+            params.filename === "index" ? cur : `${cur}/${params.filename}`
+          }`,
+        }),
+        {}
+      ),
     },
   };
 }
@@ -62,12 +79,14 @@ export default async function Page({ params }: { params: Params }) {
       {blocks?.map((block, iBlock) => {
         const key = `${block?.__typename}-${iBlock}`;
         switch (block?.__typename) {
-          case "PageBlocksHeroBase": {
+          case "En_pageBlocksHeroBase":
+          case "Es_pageBlocksHeroBase": {
             if (!block.visible) return null;
             return <HeroBase key={key} {...(block as HeroBaseProps)} />;
           }
 
-          case "PageBlocksBodySimple": {
+          case "En_pageBlocksBodySimple":
+          case "Es_pageBlocksBodySimple": {
             const content = block.content as TinaMarkdownContent;
             if (!block.visible || content.children.length === 0) return null;
             return <BodySimple key={key} {...(block as BodySimpleProps)} />;

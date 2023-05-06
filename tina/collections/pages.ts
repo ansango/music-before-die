@@ -1,7 +1,7 @@
 import type { Collection, TinaField } from "tinacms";
 
 import { i18n } from "../../src/i18n-config";
-import { kebabCase } from "../../src/lib";
+import { kebabCase, replacePagePath } from "../../src/lib";
 import { descriptionField, titleField, visibleField } from "../fields";
 import { bodySimpleTemplate, heroBaseTemplate } from "../templates";
 
@@ -39,7 +39,7 @@ const pagesCollections = (): Array<Collection> =>
 const pagesCollectionsField = i18n.locales.map((locale) => `${locale}_page`);
 
 const createLabel = ({ source, destination }: { source: string; destination: string }) =>
-  `${source} -> ${destination}`.replaceAll(".mdx", "").replaceAll("src/content/pages/", "");
+  `${replacePagePath(source)} -> ${replacePagePath(destination)}`;
 
 const pageRewritesCollection = (): Array<Collection> => [
   {

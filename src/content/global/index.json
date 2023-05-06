@@ -1,21 +1,58 @@
 {
-  "navigation": [
-    {
+  "en": {
+    "navigation": [
+      {
+        "visible": true,
+        "href": "",
+        "label": "home"
+      }
+    ],
+    "social": [
+      {
+        "visible": true,
+        "href": "https://www.instagram.com/iamasync/",
+        "label": "instagram"
+      },
+      {
+        "visible": false,
+        "href": "https://github.com/ansango/",
+        "label": "github"
+      }
+    ],
+    "notFound": {
       "visible": true,
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist.",
       "href": "",
-      "label": "inicio"
+      "label": "Back to home"
     }
-  ],
-  "social": [
-    {
+  },
+  "es": {
+    "navigation": [
+      {
+        "visible": true,
+        "href": "",
+        "label": "inicio"
+      }
+    ],
+    "social": [
+      {
+        "visible": true,
+        "href": "https://www.instagram.com/iamasync/",
+        "label": "instagram"
+      },
+      {
+        "visible": false,
+        "href": "https://github.com/ansango/",
+        "label": "github"
+      }
+    ],
+    "notFound": {
       "visible": true,
-      "href": "https://www.instagram.com/iamasync/",
-      "label": "instagram"
-    },
-    {
-      "visible": false,
-      "href": "https://github.com/ansango/",
-      "label": "github"
+      "title": "Página no encontrada",
+      "description": "La página que estás buscando no existe.",
+      "href": "",
+      "label": "Volver al inicio"
     }
-  ]
+  }
 }
