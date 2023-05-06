@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-import { Container, Section } from "@/components";
+import { Container, Section, Transition } from "@/components";
 
 export default function NotFound() {
   return (
-    <main>
+    <Transition>
       <Section className="flex flex-col items-center justify-center h-screen">
         <Container className="space-y-5 text-center">
           <h1>
@@ -23,6 +23,6 @@ export default function NotFound() {
           </Link>
         </Container>
       </Section>
-    </main>
+    </Transition>
   );
 }

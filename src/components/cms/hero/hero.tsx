@@ -8,7 +8,7 @@ import { Container } from "../../container";
 import { Section } from "../../section";
 
 export type HeroBaseProps = {
-  headline: string;
+  headline?: string;
   tagline?: string;
   text?: string;
   align: "left" | "center" | "right" | null;
@@ -88,7 +88,6 @@ export const heroBaseTemplate: Template = {
       type: "string",
       label: "Headline",
       name: "headline",
-      required: true,
     },
     {
       type: "string",

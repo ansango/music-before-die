@@ -5,6 +5,25 @@ import type { NextRequest } from "next/server";
 
 import { i18n } from "./i18n-config";
 
+const omitFiles = [
+  "/admin",
+  "/site.webmanifest",
+  "/favicon.ico",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/favicon-16x16.png",
+  "/favicon-32x32.png",
+  "/apple-touch-icon.png",
+  "/android-chrome-192x192.png",
+  "/android-chrome-384x384.png",
+  "/android-chrome-512x512.png",
+  "/avatar.jpeg",
+  "/browserconfig.xml",
+  "/me.webp",
+  "/mstile-150x150.png",
+  "/safari-pinned-tab.svg",
+];
+
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
@@ -18,28 +37,7 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  if (
-    [
-      "/admin",
-      "/site.webmanifest",
-      "/favicon.ico",
-      "/robots.txt",
-      "/sitemap.xml",
-      "/favicon-16x16.png",
-      "/favicon-32x32.png",
-      "/apple-touch-icon.png",
-      "/android-chrome-192x192.png",
-      "/android-chrome-384x384.png",
-      "/android-chrome-512x512.png",
-      "/avatar.jpeg",
-      "/browserconfig.xml",
-      "/me.webp",
-      "/mstile-150x150.png",
-      "/safari-pinned-tab.svg",
-    ].includes(pathname)
-  ) {
-    return;
-  }
+  if (omitFiles.includes(pathname)) return;
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`

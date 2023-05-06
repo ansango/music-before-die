@@ -53,7 +53,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function Page({ params }: { params: Params }) {
-  console.log("params", params);
   const data = await getPage({ params });
   const blocks = data?.blocks as Array<PageBlocks>;
   if (!data || !data.visible || !blocks) notFound();

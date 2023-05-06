@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
+    "localizing": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/localizing.mjs",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
+    "@headlessui/react": "^1.7.14",
     "@tinacms/cli": "^1.5.11",
     "framer-motion": "^10.12.8",
     "next": "13.4.1",
