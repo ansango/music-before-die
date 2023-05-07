@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "src/content/pages/en/index.mdx",
-      "destination": "src/content/pages/es/index.mdx"
-    }
-  ]
-}

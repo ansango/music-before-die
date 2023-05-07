@@ -4,9 +4,9 @@ import type { TinaMarkdownContent } from "tinacms/dist/rich-text";
 
 import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
-import type { Locale } from "@/i18n-config";
-import { i18n } from "@/i18n-config";
-import { getAllPagesConnection, replacePagePath, getPageLocale } from "@/lib";
+import type { Locale } from "@/i18n";
+import { i18n } from "@/i18n";
+import { getAllPagesConnection, replacePagePath, getPage } from "@/lib";
 
 import type { En_PageBlocks, Es_PageBlocks } from "../../../../tina/__generated__/types";
 
@@ -33,10 +33,6 @@ export async function generateStaticParams() {
       lang: replacePagePath(page._sys.path).split("/")[0],
     },
   }));
-}
-
-async function getPage({ params: { filename, lang } }: { params: Params }) {
-  return await getPageLocale[lang]({ params: { filename } });
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {

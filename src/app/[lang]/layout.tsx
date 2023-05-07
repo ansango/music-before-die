@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "../../styles/globals.css";
 import { Inter, Bebas_Neue, PT_Serif } from "next/font/google";
 
-import type { Locale } from "../../i18n-config";
-import { i18n } from "../../i18n-config";
+import type { Locale } from "../../i18n";
+import { i18n } from "../../i18n";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

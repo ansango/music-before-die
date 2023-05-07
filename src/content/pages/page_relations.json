@@ -1,0 +1,12 @@
+{
+  "page_relations": [
+    {
+      "en": "src/content/pages/en/index.mdx",
+      "es": "src/content/pages/es/index.mdx"
+    },
+    {
+      "en": "src/content/pages/en/about.mdx",
+      "es": "src/content/pages/es/sobre-esto.mdx"
+    }
+  ]
+}

@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 
-import globalData from "../content/global/index.json";
+import type { Locale } from "@/i18n";
+
+import { page_relations } from "../content/pages/page_relations.json";
+
+import { getRelations, typeLocaleData } from "./utils";
 
 export const useMounted = () => {
   const [mounted, setMounted] = useState(false);
@@ -17,18 +21,18 @@ export const useGetLocale = () => {
   if (!pathname) pathname = "/";
   const segments = pathname.split("/");
 
-  const redirectedPathName = (locale: string) => {
-    if (!pathname) return "/";
-    const segments = pathname.split("/");
-    segments[1] = locale;
-    return segments.join("/");
+  const redirectedPathName = (locale: Locale) => {
+    const path = getRelations(pathname, [...page_relations])?.find((relation) =>
+      relation.includes(locale)
+    );
+    return path ?? "/";
   };
 
-  return { locale: segments[1], redirectedPathName };
+  return { locale: segments[1] as Locale, redirectedPathName };
 };
 
 export const useGlobalData = () => {
   const { locale } = useGetLocale();
-  const { en, es } = globalData;
-  return locale === "en" ? { ...en, locale } : { ...es, locale };
+  const data = typeLocaleData[locale];
+  return { locale, ...data };
 };

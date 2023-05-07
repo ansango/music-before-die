@@ -1,8 +1,11 @@
+import type { Locale } from "@/i18n";
+
 import tinaClient from "../../../tina/__generated__/client";
 import type { En_PageQuery, Es_PageQuery } from "../../../tina/__generated__/types";
 
 type Params = {
   filename: string;
+  lang: Locale;
 };
 
 type PageEn = En_PageQuery["en_page"];
@@ -39,7 +42,11 @@ export async function getPageEs({ params }: { params: Params }) {
   }
 }
 
-export const getPageLocale = {
+const getPageLocale = {
   es: getPageEs,
   en: getPageEn,
 };
+
+export async function getPage({ params: { filename, lang } }: { params: Params }) {
+  return await getPageLocale[lang]({ params: { filename, lang } });
+}

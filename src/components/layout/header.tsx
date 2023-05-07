@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
-import { i18n } from "@/i18n-config";
+import { i18n } from "@/i18n";
 import { useGetLocale, useMounted } from "@/lib";
 
 import { Container } from "../container";
@@ -75,11 +75,11 @@ const LocaleSwitcher = () => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 flex flex-col w-16 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {i18n.locales.map((locale) => {
+          {i18n.locales.map((loc) => {
             return (
-              <Link href={redirectedPathName(locale)} key={locale} className="px-1 py-1">
+              <Link href={redirectedPathName(loc)} key={loc} className="px-1 py-1">
                 <Menu.Item>
-                  <span className="mx-2 uppercase cursor-pointer">{locale}</span>
+                  <span className="mx-2 uppercase cursor-pointer">{loc}</span>
                 </Menu.Item>
               </Link>
             );

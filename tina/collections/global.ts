@@ -1,6 +1,6 @@
 import type { Collection, TinaField } from "tinacms";
 
-import { i18n } from "../../src/i18n-config";
+import { i18n } from "../../src/i18n";
 import { labelField, linkField, visibleField, titleField, descriptionField } from "../fields";
 
 const defaultNavItem = {

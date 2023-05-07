@@ -1,3 +1,7 @@
+import type { Locale } from "@/i18n";
+
+import globalData from "../content/global/index.json";
+
 //This function takes a string and replaces every character with a symbol with an empty string
 //It also replaces any space with a dash
 //It then returns the string in lowercase
@@ -39,3 +43,19 @@ export const formatDate = (
 
 export const replacePagePath = (path: string) =>
   path.replace("src/content/pages/", "").replace(".mdx", "");
+
+export const typeLocaleData: Record<Locale, (typeof globalData)[Locale]> = {
+  en: globalData["en"],
+  es: globalData["es"],
+};
+
+const replaces = ["src/content/pages", ".mdx", "/index"];
+
+export const getRelations = (pathname: string, document: Array<Record<Locale, string>>) =>
+  document
+    .map((relation) =>
+      Object.values(relation).map((value) =>
+        replaces.reduce((acc, curr) => acc.replaceAll(curr, ""), value)
+      )
+    )
+    .find((relation) => relation.some((value) => value.includes(pathname)));
