@@ -6,44 +6,6 @@ import { Inter, Bebas_Neue, PT_Serif } from "next/font/google";
 import type { Locale } from "../../i18n";
 import { i18n } from "../../i18n";
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
-
-type Params = {
-  lang: Locale;
-};
-
-export const metadata = {
-  title: "Música antes de morir | Aníbal Santos",
-  description: "Música que escuchar antes de irse para el otro barrio",
-  authors: [
-    {
-      name: "Anibal Santos",
-      url: `${process.env.NEXT_PUBLIC_WEB_URI}`,
-    },
-  ],
-  openGraph: {
-    type: "website",
-    locale: "es_ES",
-    siteName: "Música antes de morir",
-    countryName: "Spain",
-    emails: ["anibalsantosgo@gmail.com"],
-  },
-  alternates: {
-    media: {
-      "image/png": `${process.env.NEXT_PUBLIC_WEB_URI}/avatar.jpeg`,
-    },
-  },
-  robots: {
-    follow: true,
-    index: true,
-    "max-image-preview": "standard",
-    notranslate: true,
-    "max-snippet": 100,
-  },
-};
-
 const display = Bebas_Neue({
   weight: ["400"],
   subsets: ["latin"],
@@ -63,6 +25,14 @@ const sans = Inter({
   variable: "--sans",
   display: "swap",
 });
+
+type Params = {
+  lang: Locale;
+};
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
 export default function RootLayout({
   children,
