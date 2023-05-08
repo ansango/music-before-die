@@ -15,7 +15,7 @@ type Props = {
   navigation: Array<LinkJSON>;
 };
 
-const ThemeChanger = () => {
+const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
 
@@ -97,7 +97,7 @@ export const Header: FC<Props> = ({ navigation }) => {
   return (
     <header>
       <Container className="flex items-start justify-between">
-        <ThemeChanger />
+        <ThemeSwitcher />
         <nav>
           <ul className="flex flex-col items-end space-y-2">
             {navigation

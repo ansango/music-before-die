@@ -1,5 +1,5 @@
 {
-  "page_relations": [
+  "relations": [
     {
       "en": "src/content/pages/en/index.mdx",
       "es": "src/content/pages/es/index.mdx"

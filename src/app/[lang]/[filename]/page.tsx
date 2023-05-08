@@ -6,7 +6,7 @@ import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
 import type { Locale } from "@/i18n";
 import { i18n } from "@/i18n";
-import { getAllPagesConnection, replacePagePath, getPage } from "@/lib";
+import { getAllPagesConnection, replacePath, getPage } from "@/lib";
 
 import type { En_PageBlocks, Es_PageBlocks } from "../../../../tina/__generated__/types";
 
@@ -30,7 +30,7 @@ export async function generateStaticParams() {
   return pages.map((page) => ({
     params: {
       filename: page._sys.filename,
-      lang: replacePagePath(page._sys.path).split("/")[0],
+      lang: replacePath(page._sys.path).split("/")[0],
     },
   }));
 }

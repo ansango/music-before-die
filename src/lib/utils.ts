@@ -41,15 +41,15 @@ export const formatDate = (
   return now;
 };
 
-export const replacePagePath = (path: string) =>
-  path.replace("src/content/pages/", "").replace(".mdx", "");
+const replaces = ["src/content/pages", ".mdx", "/index"];
 
-export const typeLocaleData: Record<Locale, (typeof globalData)[Locale]> = {
+export const replacePath = (path: string) =>
+  replaces.reduce((acc, curr) => acc.replaceAll(curr, ""), path);
+
+export const localeGlobalData: Record<Locale, (typeof globalData)[Locale]> = {
   en: globalData["en"],
   es: globalData["es"],
 };
-
-const replaces = ["src/content/pages", ".mdx", "/index"];
 
 export const getRelations = (pathname: string, document: Array<Record<Locale, string>>) =>
   document

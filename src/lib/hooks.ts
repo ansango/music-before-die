@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 import type { Locale } from "@/i18n";
 
-import { page_relations } from "../content/pages/page_relations.json";
+import relationsJson from "../content/relations.json";
 
-import { getRelations, typeLocaleData } from "./utils";
+import { getRelations, localeGlobalData } from "./utils";
 
 export const useMounted = () => {
   const [mounted, setMounted] = useState(false);
@@ -22,10 +22,12 @@ export const useGetLocale = () => {
   const segments = pathname.split("/");
 
   const redirectedPathName = (locale: Locale) => {
-    const path = getRelations(pathname, [...page_relations])?.find((relation) =>
-      relation.includes(locale)
-    );
-    return path ?? "/";
+    const path =
+      getRelations(pathname, relationsJson.relations)?.find((relation) =>
+        relation.includes(locale)
+      ) ?? `/`;
+
+    return path;
   };
 
   return { locale: segments[1] as Locale, redirectedPathName };
@@ -33,6 +35,6 @@ export const useGetLocale = () => {
 
 export const useGlobalData = () => {
   const { locale } = useGetLocale();
-  const data = typeLocaleData[locale];
+  const data = localeGlobalData[locale];
   return { locale, ...data };
 };

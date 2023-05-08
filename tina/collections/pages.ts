@@ -1,7 +1,7 @@
 import type { Collection, TinaField } from "tinacms";
 
 import { i18n } from "../../src/i18n";
-import { kebabCase, replacePagePath } from "../../src/lib";
+import { kebabCase } from "../../src/lib";
 import { descriptionField, titleField, visibleField } from "../fields";
 import { bodySimpleTemplate, heroBaseTemplate } from "../templates";
 
@@ -36,39 +36,4 @@ const pagesCollections = (): Array<Collection> =>
     ],
   }));
 
-const pagesCollectionsField = i18n.locales.map((locale) => `${locale}_page`);
-
-const pagesRelations = (): Array<Collection> => [
-  {
-    label: "pages /relations",
-    name: "page_relations",
-    path: "src/content/pages",
-    format: "json",
-    fields: [
-      {
-        type: "object",
-        label: "Pages Relations",
-        name: "page_relations",
-        list: true,
-        ui: {
-          itemProps: (values) => {
-            const _values = Object.values(values).map((value) => {
-              return replacePagePath(value);
-            });
-
-            return { label: _values.join(" -> ") };
-          },
-        },
-
-        fields: i18n.locales.map((locale) => ({
-          type: "reference",
-          label: `/${locale}`,
-          name: locale,
-          collections: pagesCollectionsField.filter((name) => name === `${locale}_page`),
-        })),
-      },
-    ],
-  },
-];
-
-export const pagesModule = (): Array<Collection> => [...pagesCollections(), ...pagesRelations()];
+export const pagesModule = (): Array<Collection> => [...pagesCollections()];
