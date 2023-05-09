@@ -13,14 +13,20 @@ type Params = {
 };
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const data = await getPage({ params });
+  const { filename, lang } = params;
+  const relativePath = `${lang}/${filename}.mdx`;
+  const page = await getPage(relativePath);
+
+  const title = page?.seo?.title;
+  const description = page?.seo?.description;
+
   const url = `${process.env.NEXT_PUBLIC_WEB_URI}/${
     params.filename === "index" ? params.lang : `${params.lang}/${params.filename}`
   }`;
 
   return {
-    title: `${data?.title ?? "X"} | Música antes de morir`,
-    description: data?.description ?? "Música que escuchar antes de irse para el otro barrio",
+    title: `${title ?? "X"} | Música antes de morir`,
+    description: description ?? "Música que escuchar antes de irse para el otro barrio",
     authors: [
       {
         name: "Anibal Santos",
@@ -29,8 +35,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     ],
     openGraph: {
       type: "website",
-      title: `${data?.title ?? "X"} | Música antes de morir`,
-      description: data?.description ?? "Música antes de morir",
+      title: `${title ?? "X"} | Música antes de morir`,
+      description: description ?? "Música antes de morir",
       url,
       locale: params.lang,
       siteName: "Música antes de morir",

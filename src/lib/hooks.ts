@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 import type { Locale } from "@/i18n";
 
-import relationsJson from "../content/relations.json";
+import globalData from "../content/global/index.json";
 
-import { getRelations, localeGlobalData } from "./utils";
+import { getRelations } from "./utils";
 
 export const useMounted = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,9 +23,8 @@ export const useGetLocale = () => {
 
   const redirectedPathName = (locale: Locale) => {
     const path =
-      getRelations(pathname, relationsJson.relations)?.find((relation) =>
-        relation.includes(locale)
-      ) ?? `/`;
+      getRelations(pathname, globalData.relations)?.find((relation) => relation.includes(locale)) ??
+      `/`;
 
     return path;
   };
@@ -33,8 +32,4 @@ export const useGetLocale = () => {
   return { locale: segments[1] as Locale, redirectedPathName };
 };
 
-export const useGlobalData = () => {
-  const { locale } = useGetLocale();
-  const data = localeGlobalData[locale];
-  return { locale, ...data };
-};
+export const useGlobalData = () => globalData;

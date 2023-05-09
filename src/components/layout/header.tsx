@@ -62,9 +62,7 @@ const LocaleSwitcher = () => {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button className="flex items-center justify-center px-2 uppercase bg-gray-300 rounded-md h-9 text-primary bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-        {locale}
-      </Menu.Button>
+      <Menu.Button className="uppercase text-primary">{locale}</Menu.Button>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -74,7 +72,7 @@ const LocaleSwitcher = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 flex flex-col w-16 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 flex flex-col w-16 mt-2 origin-top-right divide-y divide-gray-100 rounded-sm shadow-sm dark:divide-gray-800">
           {i18n.locales.map((loc) => {
             return (
               <Link href={redirectedPathName(loc)} key={loc} className="px-1 py-1">
@@ -96,24 +94,20 @@ export const Header: FC<Props> = ({ navigation }) => {
 
   return (
     <header>
-      <Container className="flex items-start justify-between">
-        <ThemeSwitcher />
+      <Container className="flex items-start justify-end gap-5">
         <nav>
           <ul className="flex flex-col items-end space-y-2">
             {navigation
               .filter((item) => item.visible)
               .map((item, i) => {
-                const route = `/${locale}/${item.href}`;
-                const isActive = `${segment}/` === route;
+                const route = `/${locale}/${item.href.trim()}`;
+                const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
+                const isActive = segment === routeIndex;
                 return (
                   <li key={`${item.label}-${i}`}>
                     <Link
                       href={route}
-                      className={
-                        isActive
-                          ? "underline underline-offset-4 block odd:rotate-[1.5deg] even:-rotate-[1.5deg]"
-                          : ""
-                      }
+                      className={isActive ? "underline underline-offset-4 block" : ""}
                     >
                       {item.label}
                     </Link>
@@ -122,6 +116,7 @@ export const Header: FC<Props> = ({ navigation }) => {
               })}
           </ul>
         </nav>
+        <ThemeSwitcher />
         <LocaleSwitcher />
       </Container>
     </header>

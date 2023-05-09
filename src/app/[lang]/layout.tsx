@@ -1,20 +1,18 @@
 import type { ReactNode } from "react";
 
 import "../../styles/globals.css";
-import { Inter, Bebas_Neue, PT_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import type { Locale } from "../../i18n";
 import { i18n } from "../../i18n";
 
-const display = Bebas_Neue({
-  weight: ["400"],
+const display = Inter({
   subsets: ["latin"],
   variable: "--display",
   display: "swap",
 });
 
-const serif = PT_Serif({
-  weight: ["400", "700"],
+const serif = Inter({
   subsets: ["latin"],
   variable: "--serif",
   display: "swap",
@@ -26,21 +24,18 @@ const sans = Inter({
   display: "swap",
 });
 
-type Params = {
-  lang: Locale;
-};
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export default function RootLayout({
-  children,
-  params: { lang },
-}: {
+type RootLayoutProps = {
   children: ReactNode;
-  params: Params;
-}) {
+  params: {
+    lang: Locale;
+  };
+};
+
+export default function RootLayout({ children, params: { lang } }: RootLayoutProps) {
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
   const cnBody = `min-h-screen flex flex-col ${fonts} ${debugCn}`;

@@ -1,58 +1,101 @@
 {
-  "en": {
-    "navigation": [
+  "header": {
+    "links": [
       {
-        "visible": true,
-        "href": "",
-        "label": "home"
-      }
-    ],
-    "social": [
-      {
-        "visible": true,
-        "href": "https://www.instagram.com/iamasync/",
-        "label": "instagram"
+        "label": "About",
+        "locale": {
+          "en": {
+            "visible": true,
+            "href": "about",
+            "label": "About"
+          },
+          "es": {
+            "visible": true,
+            "href": "sobre-nosotros",
+            "label": "sobre nosotros"
+          }
+        }
       },
       {
-        "visible": false,
-        "href": "https://github.com/ansango/",
-        "label": "github"
+        "label": "Home",
+        "locale": {
+          "en": {
+            "visible": true,
+            "href": " ",
+            "label": "home"
+          },
+          "es": {
+            "visible": true,
+            "href": " ",
+            "label": "inicio"
+          }
+        }
       }
-    ],
-    "notFound": {
-      "visible": true,
-      "title": "Page not found",
-      "description": "The page you are looking for does not exist.",
-      "href": "",
-      "label": "Back to home"
-    }
+    ]
   },
-  "es": {
-    "navigation": [
+  "footer": {
+    "links": [
       {
-        "visible": true,
-        "href": "",
-        "label": "inicio"
+        "label": "Home",
+        "locale": {
+          "en": {
+            "visible": true,
+            "href": " ",
+            "label": "home"
+          },
+          "es": {
+            "visible": true,
+            "href": " ",
+            "label": "inicio"
+          }
+        }
       }
     ],
     "social": [
       {
-        "visible": true,
-        "href": "https://www.instagram.com/iamasync/",
-        "label": "instagram"
+        "label": "GitHub",
+        "locale": {
+          "en": {
+            "visible": true,
+            "href": "https://github.com/ansango",
+            "label": "github"
+          },
+          "es": {
+            "visible": true,
+            "href": "https://github.com/ansango",
+            "label": "github"
+          }
+        }
       },
       {
-        "visible": false,
-        "href": "https://github.com/ansango/",
-        "label": "github"
+        "label": "Instagram",
+        "locale": {
+          "en": {
+            "visible": true,
+            "href": "https://instagram.com/iamasync",
+            "label": "instagram"
+          },
+          "es": {
+            "visible": true,
+            "href": "https://instagram.com/iamasync",
+            "label": "instagram"
+          }
+        }
       }
-    ],
-    "notFound": {
-      "visible": true,
-      "title": "Página no encontrada",
-      "description": "La página que estás buscando no existe.",
-      "href": "",
-      "label": "Volver al inicio"
+    ]
+  },
+  "relations": [
+    {
+      "en": "src/content/pages/en/index.mdx",
+      "es": "src/content/pages/es/index.mdx"
+    },
+    {
+      "en": "src/content/pages/en/about.mdx",
+      "es": "src/content/pages/es/sobre-esto.mdx"
+    },
+    {
+      "en": "src/content/pages/en/contact.mdx",
+      "es": "src/content/pages/es/contacto.mdx"
     }
-  }
+  ]
 }

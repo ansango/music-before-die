@@ -4,14 +4,13 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import { Container, Section, Transition } from "@/components";
-import { useGlobalData } from "@/lib";
+import { useGetLocale, useGlobalData } from "@/lib";
 
 export default function NotFound() {
-  const {
-    locale,
-    notFound: { title, description, visible, label, href },
-  } = useGlobalData();
-
+  const { notFound } = useGlobalData();
+  const { locale } = useGetLocale();
+  if (!notFound) return null;
+  const { title, description, link, visible } = notFound[locale];
   return (
     <Transition>
       {visible && (
@@ -27,9 +26,11 @@ export default function NotFound() {
             <p>
               <Balancer>{description}</Balancer>
             </p>
-            <Link className="block" href={`/${locale}/${href}`}>
-              {label}
-            </Link>
+            {link && (
+              <Link className="block" href={`/${locale}/${link.href}`}>
+                {link.label}
+              </Link>
+            )}
           </Container>
         </Section>
       )}

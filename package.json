@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^0.4.1",
+    "slugify": "^1.6.6",
     "tinacms": "^1.5.4"
   },
   "devDependencies": {

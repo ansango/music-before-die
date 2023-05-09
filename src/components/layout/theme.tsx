@@ -8,28 +8,35 @@ type Props = {
   children: ReactNode;
 };
 
-import { useGlobalData } from "@/lib";
+import { useGetLocale, useGlobalData } from "@/lib";
 
 import { Footer } from "./footer";
 import { Header } from "./header";
 
 export const Theme: FC<Props> = ({ children }) => {
-  const { navigation, social } = useGlobalData();
+  const { header, footer } = useGlobalData();
+  const { locale: currentLocale } = useGetLocale();
 
   return (
     <ThemeProvider attribute="class" themes={["light", "dark"]} enableSystem={false}>
-      <Header
-        {...{
-          navigation,
-        }}
-      />
+      {header && (
+        <Header
+          {...{
+            navigation: header.links.map(({ locale }) => locale[currentLocale]),
+          }}
+        />
+      )}
+
       {children}
-      <Footer
-        {...{
-          navigation,
-          social,
-        }}
-      />
+
+      {footer && (
+        <Footer
+          {...{
+            navigation: footer.links.map(({ locale }) => locale[currentLocale]),
+            social: footer.social.map(({ locale }) => locale[currentLocale]),
+          }}
+        />
+      )}
     </ThemeProvider>
   );
 };
