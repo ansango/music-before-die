@@ -9,3 +9,8 @@ html {
 body {
   @apply h-full font-serif text-base;
 }
+
+a,
+.btn {
+  @apply text-sm;
+}
