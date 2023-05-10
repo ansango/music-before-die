@@ -18,7 +18,7 @@ export const Theme: FC<Props> = ({ children }) => {
   const { locale: currentLocale } = useGetLocale();
 
   return (
-    <ThemeProvider attribute="class" themes={["light", "dark"]} enableSystem={false}>
+    <ThemeProvider attribute="data-theme" themes={["lofi", "black"]} enableSystem={false}>
       {header && (
         <Header
           {...{

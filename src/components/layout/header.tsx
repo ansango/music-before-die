@@ -1,15 +1,12 @@
 import type { FC } from "react";
 import { Fragment } from "react";
 
-import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
 import { i18n } from "@/i18n";
 import { useGetLocale, useMounted } from "@/lib";
-
-import { Container } from "../container";
 
 type Props = {
   navigation: Array<LinkJSON>;
@@ -20,7 +17,7 @@ const ThemeSwitcher = () => {
   const mounted = useMounted();
 
   const onClick = () => {
-    const themeCondition = theme === "dark" ? "light" : "dark";
+    const themeCondition = theme === "black" ? "lofi" : "black";
     setTheme(themeCondition);
   };
 
@@ -36,7 +33,7 @@ const ThemeSwitcher = () => {
         <g fill="none" fillRule="evenodd">
           {mounted && (
             <>
-              {theme === "dark" ? (
+              {theme === "black" ? (
                 <>
                   <path
                     fill="currentColor"
@@ -61,30 +58,33 @@ const LocaleSwitcher = () => {
   const { locale, redirectedPathName } = useGetLocale();
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button className="uppercase text-primary">{locale}</Menu.Button>
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 flex flex-col w-16 mt-2 origin-top-right divide-y divide-gray-100 rounded-sm shadow-sm dark:divide-gray-800">
-          {i18n.locales.map((loc) => {
-            return (
-              <Link href={redirectedPathName(loc)} key={loc} className="px-1 py-1">
-                <Menu.Item>
-                  <span className="mx-2 uppercase cursor-pointer">{loc}</span>
-                </Menu.Item>
-              </Link>
-            );
-          })}
-        </Menu.Items>
-      </Transition>
-    </Menu>
+    <>
+      <li tabIndex={0}>
+        <a>
+          {locale}
+          <svg
+            className="fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+          </svg>
+        </a>
+        <ul className="p-2 bg-base-100">
+          <li>
+            {i18n.locales.map((loc) => {
+              return (
+                <Link href={redirectedPathName(loc)} key={loc} className="px-1 py-1">
+                  {loc}
+                </Link>
+              );
+            })}
+          </li>
+        </ul>
+      </li>
+    </>
   );
 };
 
@@ -93,32 +93,37 @@ export const Header: FC<Props> = ({ navigation }) => {
   const { locale } = useGetLocale();
 
   return (
-    <header>
-      <Container className="flex items-start justify-end gap-5">
-        <nav>
-          <ul className="flex flex-col items-end space-y-2">
-            {navigation
-              .filter((item) => item.visible)
-              .map((item, i) => {
-                const route = `/${locale}/${item.href.trim()}`;
-                const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
-                const isActive = segment === routeIndex;
-                return (
-                  <li key={`${item.label}-${i}`}>
-                    <Link
-                      href={route}
-                      className={isActive ? "underline underline-offset-4 block" : ""}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-        </nav>
-        <ThemeSwitcher />
-        <LocaleSwitcher />
-      </Container>
+    <header className="navbar bg-base-100">
+      <div className="flex-1">
+        <a className="text-base normal-case btn btn-ghost">mbd</a>
+      </div>
+      <nav className="flex-none">
+        <ul className="px-1 menu menu-horizontal">
+          {navigation
+            .filter((item) => item.visible)
+            .map((item, i) => {
+              const route = `/${locale}/${item.href.trim()}`;
+              const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
+              const isActive = segment === routeIndex;
+              return (
+                <li key={`${item.label}-${i}`}>
+                  <Link
+                    href={route}
+                    className={
+                      isActive
+                        ? "underline underline-offset-4 block"
+                        : "text-xl normal-case btn btn-ghost"
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          <LocaleSwitcher />
+          <ThemeSwitcher />
+        </ul>
+      </nav>
     </header>
   );
 };
