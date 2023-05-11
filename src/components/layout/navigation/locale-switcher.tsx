@@ -4,8 +4,8 @@ import { i18n } from "@/i18n";
 import { useGetLocale } from "@/lib";
 
 export const LocaleSwitcher = () => {
-  const { locale, redirectedPathName } = useGetLocale();
-
+  const { locale } = useGetLocale();
+  const redirectedPathName = (locale) => "/";
   return (
     <li className="dropdown dropdown-end">
       <label

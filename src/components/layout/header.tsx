@@ -3,22 +3,17 @@ import type { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useGetLocale } from "@/lib";
-
 import { Container } from "../container";
+import { useGlobalContext, useLocale } from "../context";
 
-import { DrawerButton } from "./drawer";
+import { DrawerButton, useGlobalDrawerId } from "./drawer";
 import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
 
-type Props = {
-  navigation: Array<LinkJSON>;
-  drawerId: string;
-};
-
-export const Header: FC<Props> = ({ navigation, drawerId }) => {
+export const Header: FC = () => {
   const segment = usePathname();
-  const { locale } = useGetLocale();
-
+  const navigation = [];
+  const { locale } = useLocale();
+  const drawerId = useGlobalDrawerId();
   return (
     <header>
       <Container className="max-w-screen-lg navbar bg-base-100">
@@ -27,25 +22,23 @@ export const Header: FC<Props> = ({ navigation, drawerId }) => {
         </div>
         <nav className="flex-none">
           <ul className="flex-none hidden px-1 menu menu-horizontal lg:flex">
-            {navigation
-              .filter((item) => item.visible)
-              .map((item, i) => {
-                const route = `/${locale}/${item.href.trim()}`;
-                const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
-                const isActive = segment === routeIndex;
-                return (
-                  <li key={`${item.label}-${i}`}>
-                    <Link
-                      href={route}
-                      className={`btn btn-link hover:underline-offset-4 normal-case ${
-                        isActive ? "underline-offset-4" : "no-underline"
-                      } `}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
+            {navigation.map((item, i) => {
+              const route = `/${locale}/${item.href.trim()}`;
+              const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
+              const isActive = segment === routeIndex;
+              return (
+                <li key={`${item.label}-${i}`}>
+                  <Link
+                    href={route}
+                    className={`btn btn-link hover:underline-offset-4 normal-case ${
+                      isActive ? "underline-offset-4" : "no-underline"
+                    } `}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

@@ -12,16 +12,18 @@ type Params = {
   lang: Locale;
 };
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata | null> {
   const { filename, lang } = params;
   const relativePath = `${lang}/${filename}.mdx`;
-  const page = await getPage(relativePath);
+  const content = await getPage(relativePath);
 
-  const title = page?.seo?.title;
-  const description = page?.seo?.description;
+  if (!content || !content.page) return null;
+  const seo = content.page.seo;
+  const title = seo?.title;
+  const description = seo?.description;
 
   const url = `${process.env.NEXT_PUBLIC_WEB_URI}/${
-    params.filename === "index" ? params.lang : `${params.lang}/${params.filename}`
+    params.filename === "index" ? lang : `${lang}/${filename}`
   }`;
 
   return {
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       title: `${title ?? "X"} | Música antes de morir`,
       description: description ?? "Música antes de morir",
       url,
-      locale: params.lang,
+      locale: lang,
       siteName: "Música antes de morir",
       countryName: "Spain",
       emails: ["anibalsantosgo@gmail.com"],
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
         (acc, cur) => ({
           ...acc,
           [cur]: `${process.env.NEXT_PUBLIC_WEB_URI}/${
-            params.filename === "index" ? cur : `${cur}/${params.filename}`
+            params.filename === "index" ? cur : `${cur}/${filename}`
           }`,
         }),
         {}

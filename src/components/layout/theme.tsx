@@ -2,50 +2,26 @@
 
 import type { FC, ReactNode } from "react";
 
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "../context";
 
-import { useGetLocale } from "@/lib";
-
-import type { Props as GlobalProps } from "../context/global-provider";
-import { GlobalProvider } from "../context/global-provider";
-
-import { Drawer, DrawerContent, DrawerSide } from "./drawer";
+import { GlobalDrawer, GlobalDrawerSide, DrawerContent } from "./drawer";
 import { Footer } from "./footer";
 import { Header } from "./header";
 
 type Props = {
   children: ReactNode;
-} & GlobalProps;
+};
 
-export const Theme: FC<Props> = ({ children, ...globalProps }) => {
-  // const { header, footer } = useGlobalData();
-  const { locale: currentLocale } = useGetLocale();
-  const drawerId = "my-drawer-3";
+export const Theme: FC<Props> = ({ children }) => {
   return (
-    <ThemeProvider attribute="data-theme" themes={["lofi", "black"]} enableSystem={false}>
-      <Drawer drawerId={drawerId}>
+    <ThemeProvider>
+      <GlobalDrawer>
         <DrawerContent className="flex flex-col min-h-screen">
-          {/* {header && (
-            <Header
-              {...{
-                navigation: header.links.map(({ locale }) => locale[currentLocale]),
-                drawerId,
-              }}
-            />
-          )} */}
-
+          <Header />
           {children}
-
-          {/* {footer && (
-            <Footer
-              {...{
-                navigation: footer.links.map(({ locale }) => locale[currentLocale]),
-                social: footer.social.map(({ locale }) => locale[currentLocale]),
-              }}
-            />
-          )} */}
+          <Footer />
         </DrawerContent>
-        <DrawerSide drawerId={drawerId}>
+        <GlobalDrawerSide>
           <ul className="p-4 menu w-80 bg-base-200">
             <li>
               <a>Sidebar Item 1</a>
@@ -54,8 +30,8 @@ export const Theme: FC<Props> = ({ children, ...globalProps }) => {
               <a>Sidebar Item 2</a>
             </li>
           </ul>
-        </DrawerSide>
-      </Drawer>
+        </GlobalDrawerSide>
+      </GlobalDrawer>
     </ThemeProvider>
   );
 };
