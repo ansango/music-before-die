@@ -8,7 +8,7 @@ type Props = {
 export const Section: FC<Props> = ({ children, className = "" }) => {
   return (
     <section
-      className={`flex-1 relative transition duration-150 ease-out overflow-hidden ${className}`}
+      className={`flex-1 relative transition duration-150 ease-out overflow-hidden ${className}`.trim()}
     >
       {children}
     </section>

@@ -16,13 +16,14 @@ export const formatDate = (
   return now;
 };
 
-const replaces = ["src/content/pages", ".mdx", "/index"];
+export const collections = ["pages"];
+const replaces = [...collections.map((col) => `src/content/${col}`), ".mdx", "/index"];
 
 export const replacePath = (path: string) =>
   replaces.reduce((acc, curr) => acc.replaceAll(curr, ""), path);
 
-export const getRelations = (pathname: string, document: Array<Record<Locale, string>>) =>
-  document
+export const getRelations = (pathname: string, documents: Array<Record<Locale, string>>) =>
+  documents
     .map((relation) =>
       Object.values(relation).map((value) =>
         replaces.reduce((acc, curr) => acc.replaceAll(curr, ""), value)

@@ -6,11 +6,7 @@ type Props = {
   children?: ReactNode;
 };
 
-export const DrawerButton: FC<Props> = ({
-  drawerId,
-  children,
-  className = "btn btn-sm btn-circle btn-ghost",
-}) => {
+export const DrawerButton: FC<Props> = ({ drawerId, children, className = "" }) => {
   return (
     <label htmlFor={drawerId} className={className}>
       {children}

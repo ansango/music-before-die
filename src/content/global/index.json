@@ -1,101 +1,36 @@
 {
-  "header": {
-    "links": [
+  "paths": {
+    "page": [
       {
-        "label": "About",
-        "locale": {
-          "en": {
-            "visible": true,
-            "href": "about",
-            "label": "About"
-          },
-          "es": {
-            "visible": true,
-            "href": "sobre-nosotros",
-            "label": "sobre nosotros"
-          }
+        "en": {
+          "href": "src/content/pages/en/index.mdx",
+          "label": "home"
+        },
+        "es": {
+          "href": "src/content/pages/es/index.mdx",
+          "label": "inicio"
         }
       },
       {
-        "label": "Home",
-        "locale": {
-          "en": {
-            "visible": true,
-            "href": " ",
-            "label": "home"
-          },
-          "es": {
-            "visible": true,
-            "href": " ",
-            "label": "inicio"
-          }
-        }
-      }
-    ]
-  },
-  "footer": {
-    "links": [
-      {
-        "label": "Home",
-        "locale": {
-          "en": {
-            "visible": true,
-            "href": " ",
-            "label": "home"
-          },
-          "es": {
-            "visible": true,
-            "href": " ",
-            "label": "inicio"
-          }
-        }
-      }
-    ],
-    "social": [
-      {
-        "label": "GitHub",
-        "locale": {
-          "en": {
-            "visible": true,
-            "href": "https://github.com/ansango",
-            "label": "github"
-          },
-          "es": {
-            "visible": true,
-            "href": "https://github.com/ansango",
-            "label": "github"
-          }
+        "en": {
+          "href": "src/content/pages/en/about.mdx",
+          "label": "about"
+        },
+        "es": {
+          "href": "src/content/pages/es/sobre-esto.mdx",
+          "label": "sobre-esto"
         }
       },
       {
-        "label": "Instagram",
-        "locale": {
-          "en": {
-            "visible": true,
-            "href": "https://instagram.com/iamasync",
-            "label": "instagram"
-          },
-          "es": {
-            "visible": true,
-            "href": "https://instagram.com/iamasync",
-            "label": "instagram"
-          }
+        "en": {
+          "href": "src/content/pages/en/contact.mdx",
+          "label": "contact"
+        },
+        "es": {
+          "href": "src/content/pages/es/contacto.mdx",
+          "label": "contacto"
         }
       }
     ]
-  },
-  "relations": [
-    {
-      "en": "src/content/pages/en/index.mdx",
-      "es": "src/content/pages/es/index.mdx"
-    },
-    {
-      "en": "src/content/pages/en/about.mdx",
-      "es": "src/content/pages/es/sobre-esto.mdx"
-    },
-    {
-      "en": "src/content/pages/en/contact.mdx",
-      "es": "src/content/pages/es/contacto.mdx"
-    }
-  ]
+  }
 }

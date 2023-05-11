@@ -11,8 +11,6 @@ export type HeroBaseProps = {
   text?: string;
   align: "left" | "center" | "right" | null;
   rotationTitle: "left" | "center" | "right" | null;
-  backgroundLight?: string;
-  backgroundDark?: string;
 };
 
 const alignCnText = {
@@ -39,15 +37,13 @@ export const HeroBase: FC<HeroBaseProps> = ({
   text,
   align = "center",
   rotationTitle = "center",
-  backgroundLight,
-  backgroundDark,
 }) => {
   const cnContainer = align && alignCnContainer[align];
   const cnText = align && alignCnText[align];
   const cnRotationTitle = rotationTitle && rotationTitleCn[rotationTitle];
 
   return (
-    <Section className={`${backgroundLight} ${backgroundDark}`}>
+    <Section className="w-full max-w-screen-lg mx-auto">
       <Container className={`h-[65vh] flex items-center ${cnContainer}`}>
         <div className={`space-y-5 ${cnText}`}>
           {tagline && (

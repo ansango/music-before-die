@@ -6,9 +6,9 @@ type Props = {
   className?: string;
 };
 
-export const Drawer: FC<Props> = ({ children, drawerId, className }) => {
+export const Drawer: FC<Props> = ({ children, drawerId, className = "" }) => {
   return (
-    <div className={`drawer ${className}`}>
+    <div className={`drawer ${className}`.trim()}>
       <input id={drawerId} type="checkbox" className="drawer-toggle" />
       {children}
     </div>

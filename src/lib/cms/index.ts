@@ -15,6 +15,12 @@ export async function getPage(relativePath: string) {
   if (!page) return null;
 
   return {
-    ...page.data.page,
+    page: page.data.page,
+    global: page.data.global,
   };
+}
+
+export async function getGlobal() {
+  const globalConnection = await tina.queries.globalConnection();
+  return globalConnection.data.globalConnection.edges?.map((item) => ({ ...item?.node }));
 }

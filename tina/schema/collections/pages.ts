@@ -31,7 +31,6 @@ export const pagesCollection: Collection = {
       type: "string",
       label: "Title",
       name: "title",
-      isTitle: true,
       required: true,
     },
     {

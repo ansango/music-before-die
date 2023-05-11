@@ -35,10 +35,10 @@ type RootLayoutProps = {
   };
 };
 
-export default function RootLayout({ children, params: { lang } }: RootLayoutProps) {
+export default function LangLayout({ children, params: { lang } }: RootLayoutProps) {
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
-  const cnBody = `min-h-screen flex flex-col ${fonts} ${debugCn}`;
+  const cnBody = `${fonts} ${debugCn}`;
   return (
     <html lang={lang}>
       <link href="/site.webmanifest" rel="manifest" />

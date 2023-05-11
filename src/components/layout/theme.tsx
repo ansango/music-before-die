@@ -4,43 +4,46 @@ import type { FC, ReactNode } from "react";
 
 import { ThemeProvider } from "next-themes";
 
-type Props = {
-  children: ReactNode;
-};
+import { useGetLocale } from "@/lib";
 
-import { useGetLocale, useGlobalData } from "@/lib";
+import type { Props as GlobalProps } from "../context/global-provider";
+import { GlobalProvider } from "../context/global-provider";
 
 import { Drawer, DrawerContent, DrawerSide } from "./drawer";
 import { Footer } from "./footer";
 import { Header } from "./header";
 
-export const Theme: FC<Props> = ({ children }) => {
-  const { header, footer } = useGlobalData();
+type Props = {
+  children: ReactNode;
+} & GlobalProps;
+
+export const Theme: FC<Props> = ({ children, ...globalProps }) => {
+  // const { header, footer } = useGlobalData();
   const { locale: currentLocale } = useGetLocale();
   const drawerId = "my-drawer-3";
   return (
     <ThemeProvider attribute="data-theme" themes={["lofi", "black"]} enableSystem={false}>
       <Drawer drawerId={drawerId}>
-        <DrawerContent>
-          {header && (
+        <DrawerContent className="flex flex-col min-h-screen">
+          {/* {header && (
             <Header
               {...{
                 navigation: header.links.map(({ locale }) => locale[currentLocale]),
                 drawerId,
               }}
             />
-          )}
+          )} */}
 
           {children}
 
-          {footer && (
+          {/* {footer && (
             <Footer
               {...{
                 navigation: footer.links.map(({ locale }) => locale[currentLocale]),
                 social: footer.social.map(({ locale }) => locale[currentLocale]),
               }}
             />
-          )}
+          )} */}
         </DrawerContent>
         <DrawerSide drawerId={drawerId}>
           <ul className="p-4 menu w-80 bg-base-200">
