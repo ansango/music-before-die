@@ -84,5 +84,40 @@ export const globalCollection: Collection = {
         },
       ],
     },
+    {
+      type: "object",
+      label: "404",
+      name: "notFound",
+      fields: i18n.locales.map((locale) => ({
+        type: "object",
+        label: locale,
+        name: locale,
+        fields: [
+          {
+            type: "string",
+            label: "Title",
+            name: "title",
+          },
+          {
+            type: "string",
+            label: "Description",
+            name: "description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            label: "Link Label",
+            name: "linkLabel",
+          },
+          {
+            type: "string",
+            label: "Link Href",
+            name: "linkHref",
+          },
+        ],
+      })),
+    },
   ],
 };
