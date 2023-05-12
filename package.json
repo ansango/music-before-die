@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
-    "localizing": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/localizing.mjs",
+    "rewrites": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/rewrites.mjs",
+    "redirects": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/redirects.mjs",
+    "config": "npm run rewrites && npm run redirects",
+    "pre": "npm run config && next dev",
+    "dev": "tinacms dev -c \"yarn pre\"",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "lint": "next lint"

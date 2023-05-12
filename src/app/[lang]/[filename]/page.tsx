@@ -13,14 +13,14 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-  return ((await getPages()) ?? []).map((page) => ({
-    filename: page._sys?.filename,
-  }));
+  return ((await getPages()) ?? []).map((page) => {
+    return { filename: page._sys?.filename };
+  });
 }
 
 export default async function Page({ params }: { params: Params }) {
   const { filename, lang } = params;
-  const relativePath = `${lang}/${filename}.mdx`;
+  const relativePath = `${filename}.${lang}.mdx`;
   const content = await getPage(relativePath);
   if (!content || !content.page.blocks) notFound();
   const { global, page } = content;

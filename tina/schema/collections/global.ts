@@ -3,7 +3,7 @@ import type { Collection, TinaField } from "tinacms";
 import { i18n } from "../../../src/i18n";
 import { replacePath } from "../../../src/lib/utils";
 
-const collections = ["page"];
+const collections = ["page", "album"];
 
 const collectionsField: Array<TinaField> = collections.map((collection) => ({
   type: "object",
@@ -17,7 +17,7 @@ const collectionsField: Array<TinaField> = collections.map((collection) => ({
         Object.values(values)
           ?.map((value) => value && replacePath(value.href || ""))
           ?.join(" -> ");
-      console.log(values);
+
       return {
         label,
       };
@@ -56,13 +56,13 @@ export const globalCollection: Collection = {
     },
   },
   fields: [
-    {
-      type: "object",
-      label: "Paths",
-      name: "paths",
+    // {
+    //   type: "object",
+    //   label: "Paths",
+    //   name: "paths",
 
-      fields: collectionsField,
-    },
+    //   fields: collectionsField,
+    // },
     {
       type: "object",
       label: "Social Links",

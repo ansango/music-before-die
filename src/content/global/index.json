@@ -3,16 +3,6 @@
     "page": [
       {
         "en": {
-          "href": "src/content/pages/en/index.mdx",
-          "label": "home"
-        },
-        "es": {
-          "href": "src/content/pages/es/index.mdx",
-          "label": "inicio"
-        }
-      },
-      {
-        "en": {
           "href": "src/content/pages/en/about.mdx",
           "label": "about"
         },
@@ -20,15 +10,17 @@
           "href": "src/content/pages/es/sobre-esto.mdx",
           "label": "sobre-esto"
         }
-      },
+      }
+    ],
+    "album": [
       {
         "en": {
-          "href": "src/content/pages/en/contact.mdx",
-          "label": "contact"
+          "href": "src/content/albums/en/highway-to-hell.mdx",
+          "label": "Highway To Tell"
         },
         "es": {
-          "href": "src/content/pages/es/contacto.mdx",
-          "label": "contacto"
+          "href": "src/content/albums/es/highway-to-hell.mdx",
+          "label": "Highway To Tell"
         }
       }
     ]

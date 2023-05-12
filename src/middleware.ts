@@ -35,6 +35,8 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === "/admin/index.html") return;
+
   const pathname = request.nextUrl.pathname;
 
   if (omitFiles.includes(pathname)) return;

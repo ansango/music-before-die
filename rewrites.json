@@ -1,0 +1,18 @@
+[
+  {
+    "source": "/en/about",
+    "destination": "/en/about"
+  },
+  {
+    "source": "/es/sobre-nosotros",
+    "destination": "/es/about"
+  },
+  {
+    "source": "/en",
+    "destination": "/en/index"
+  },
+  {
+    "source": "/es",
+    "destination": "/es/index"
+  }
+]

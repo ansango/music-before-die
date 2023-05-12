@@ -14,7 +14,7 @@ type Params = {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata | null> {
   const { filename, lang } = params;
-  const relativePath = `${lang}/${filename}.mdx`;
+  const relativePath = `${filename}.${lang}.mdx`;
   const content = await getPage(relativePath);
 
   if (!content || !content.page) return null;

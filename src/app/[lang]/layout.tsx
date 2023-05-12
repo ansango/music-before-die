@@ -4,7 +4,7 @@ import "../../styles/globals.css";
 import { Inter } from "next/font/google";
 
 import type { Locale } from "../../i18n";
-import { i18n } from "../../i18n";
+// import { i18n } from "../../i18n";
 
 const display = Inter({
   subsets: ["latin"],
@@ -24,9 +24,9 @@ const sans = Inter({
   display: "swap",
 });
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// export async function generateStaticParams() {
+//   return i18n.locales.map((locale) => ({ lang: locale }));
+// }
 
 type RootLayoutProps = {
   children: ReactNode;

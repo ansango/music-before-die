@@ -6,6 +6,7 @@ export async function getPages() {
 }
 
 export async function getPage(relativePath: string) {
+  console.log("relativePath", relativePath);
   const page = await tina.queries
     .contentQuery({
       relativePath,

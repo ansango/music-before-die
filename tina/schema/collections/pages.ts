@@ -12,27 +12,40 @@ export const pagesCollection: Collection = {
   format: "mdx",
   ui: {
     filename: {
-      readonly: true,
-      slugify: ({ title, locale }) => {
-        const slug = title && slugify(title, { lower: true });
-        return locale ? `${locale}/${slug}` : slug;
+      slugify: ({ filename_id, locale }) => {
+        const slug = filename_id && slugify(filename_id, { lower: true });
+        return locale ? `${slug}.${locale}` : slug;
       },
     },
   },
   fields: [
-    seo,
     {
       type: "string",
-      label: "lang",
+      label: "ID",
+      name: "filename_id",
+      required: true,
+      description:
+        "Unique identifier for the filename equal in i18n versions: about => about.es.mdx, about.en.mdx",
+    },
+    {
+      type: "string",
+      label: "Segment",
+      name: "segment",
+      required: true,
+      description: "Segment of the url: /about, /sobre-nosotros",
+    },
+    {
+      type: "string",
+      label: "Lang",
       name: "locale",
       options: i18n.locales.map((locale) => locale),
-    },
-    {
-      type: "string",
-      label: "Title",
-      name: "title",
       required: true,
+      description: "Language of the page",
+      ui: {
+        component: "radio-group",
+      },
     },
+    seo,
     {
       type: "object",
       list: true,
@@ -41,7 +54,7 @@ export const pagesCollection: Collection = {
       ui: {
         visualSelector: true,
       },
-      templates: [bodySimpleTemplate, heroBaseTemplate],
+      templates: [heroBaseTemplate, bodySimpleTemplate],
     },
   ],
 };
