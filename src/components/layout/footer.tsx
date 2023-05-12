@@ -8,8 +8,8 @@ import { Container } from "../container";
 
 export const Footer: FC = () => {
   const { locale } = useGetLocale();
-  const navigation = [];
-  const social = [];
+  const navigation: { href: string; label: string }[] = [];
+  const social: { href: string; label: string }[] = [];
   return (
     <footer className="pt-20 bg-neutral">
       <Container className="max-w-screen-lg p-10 footer text-neutral-content">
