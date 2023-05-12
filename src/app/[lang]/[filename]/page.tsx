@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 
 import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
-import type { Props as GlobalProps } from "@/components/context";
 import { GlobalProvider } from "@/components/context";
 import type { Locale } from "@/i18n";
 import { getPages, getPage } from "@/lib";
@@ -19,14 +18,16 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: Params }) {
+  console.log("params", params);
   const { filename, lang } = params;
   const relativePath = `${filename}.${lang}.mdx`;
+
   const content = await getPage(relativePath);
   if (!content || !content.page.blocks) notFound();
-  const { global, page } = content;
+  const { page } = content;
 
   return (
-    <GlobalProvider {...(global as GlobalProps)}>
+    <GlobalProvider>
       {page.blocks?.map((block, index) => {
         const key = `${block?.__typename}-${index}`;
         switch (block?.__typename) {
