@@ -39,4 +39,4 @@ function generateJsonFile(pages, path) {
 
 const pages = getPages();
 
-generateJsonFile(pages, "rewrites.json");
+generateJsonFile(pages, "src/config/rewrites.json");

@@ -42,4 +42,4 @@ function generateJsonFile(pages, path) {
 
 const pages = getPages();
 
-generateJsonFile(pages, "redirects.json");
+generateJsonFile(pages, "src/config/redirects.json");
