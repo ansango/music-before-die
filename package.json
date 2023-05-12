@@ -8,8 +8,9 @@
     "config": "npm run rewrites && npm run redirects",
     "pre": "npm run config && next dev",
     "dev": "tinacms dev -c \"yarn pre\"",
-    "build": "tinacms build && next build",
-    "start": "tinacms build && next start",
+    "prebuild": "tinacms build && npm run config",
+    "build": "next build",
+    "start": "tinacms build && npm run config && next start",
     "lint": "next lint"
   },
   "dependencies": {
