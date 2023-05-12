@@ -13,7 +13,7 @@ import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
 
 export const Header: FC = () => {
   const segment = usePathname();
-  const navigation: any[] = [];
+  const navigation: { href: string; label: string }[] = [];
   const locale = "en";
   // const { locale, allDocuments, currentDocs, redirect } = useCustomRouter();
   // const navigation = currentDocs;
