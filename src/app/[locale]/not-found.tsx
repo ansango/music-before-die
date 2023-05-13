@@ -4,11 +4,11 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import { Container, Section, Transition } from "@/components";
-import { GlobalProvider, useNotFound } from "@/components/context";
+import { useNotFound } from "@/components/context";
 
 const FourOhFour = () => {
-  const { title, description, linkHref, linkLabel } = useNotFound();
-
+  const { title, description, linkHref, linkLabel, locale } = useNotFound();
+  const link = `/${locale}${linkHref}`.replace(/\/(?!.*\w)/, "") ?? `/${locale}`;
   return (
     <>
       <h1>
@@ -22,7 +22,7 @@ const FourOhFour = () => {
         <Balancer>{description}</Balancer>
       </p>
 
-      <Link className="block" href={linkHref ?? "/"}>
+      <Link className="block" href={link}>
         {linkLabel}
       </Link>
     </>
@@ -31,14 +31,13 @@ const FourOhFour = () => {
 
 export default function NotFound() {
   return (
-    <GlobalProvider>
-      <Transition>
-        <Section className="flex flex-col items-center justify-center h-screen">
-          <Container className="space-y-5 text-center">
-            <FourOhFour />
-          </Container>
-        </Section>
-      </Transition>
-    </GlobalProvider>
+    <Transition>
+      <Section className="flex flex-col items-center justify-center h-screen">
+        <Container className="space-y-5 text-center">
+          <FourOhFour />
+          <Link href="/about">a</Link>
+        </Container>
+      </Section>
+    </Transition>
   );
 }

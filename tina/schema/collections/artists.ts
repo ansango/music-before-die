@@ -18,11 +18,20 @@ const artistFields: Array<TinaField> = [
     description: "Image of the artist",
   },
   {
-    type: "reference",
+    type: "object",
     label: "Albums",
     name: "albums",
-    collections: ["album"],
     description: "Albums of the artist",
+    list: true,
+    fields: [
+      {
+        type: "reference",
+        label: "Album",
+        name: "album",
+        collections: ["album"],
+        required: true,
+      },
+    ],
   },
 
   links({ name: "musicLinks", label: "Music Links" }),

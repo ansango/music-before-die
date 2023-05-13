@@ -2,32 +2,29 @@ import { notFound } from "next/navigation";
 
 import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
-import { GlobalProvider } from "@/components/context";
 import type { Locale } from "@/i18n";
 import { getPages, getPage } from "@/lib";
 
 type Params = {
   filename: string;
-  lang: Locale;
+  locale: Locale;
 };
 
 export async function generateStaticParams() {
   return ((await getPages()) ?? []).map((page) => {
-    return { filename: page._sys?.filename };
+    return { filename: page._sys?.filename, locale: page.locale };
   });
 }
 
 export default async function Page({ params }: { params: Params }) {
-  console.log("params", params);
-  const { filename, lang } = params;
-  const relativePath = `${filename}.${lang}.mdx`;
+  const relativePath = `${params.filename}.${params.locale}.mdx`;
 
   const content = await getPage(relativePath);
   if (!content || !content.page.blocks) notFound();
   const { page } = content;
 
   return (
-    <GlobalProvider>
+    <>
       {page.blocks?.map((block, index) => {
         const key = `${block?.__typename}-${index}`;
         switch (block?.__typename) {
@@ -44,6 +41,6 @@ export default async function Page({ params }: { params: Params }) {
           }
         }
       })}
-    </GlobalProvider>
+    </>
   );
 }

@@ -12,5 +12,5 @@ const defaultNotFound = {
 export const useNotFound = () => {
   const { locale } = useGetLocale();
   const { notFound } = useGlobalContext();
-  return notFound?.[locale] ?? defaultNotFound;
+  return { ...(notFound?.[locale] ?? defaultNotFound), locale };
 };

@@ -14,11 +14,29 @@ export function generateJsonFile(pages, path) {
   });
 }
 
+export const makeWriteObject = (locale, segments, collection, filename_id) => {
+  if (collection === "page") {
+    return {
+      source: `/${locale}${segments.map(({ value }) => value).join("")}`.replace(/\/(?!.*\w)/, ""),
+      destination: `/${locale}/${filename_id}`.replace(/\/(?!.*\w)/, ""),
+    };
+  }
+  return {
+    source: `/${locale}${segments.map(({ value }) => value)}/:slug`,
+    destination: `/${locale}/${collection}/:slug`,
+  };
+};
+
 export function getDataFromMarkdownFile(filePath) {
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContents);
   const collection = path.basename(path.dirname(filePath));
-  return { ...data, collection, filePath };
+  return {
+    ...data,
+    collection,
+    filePath,
+    rewrites: makeWriteObject(data.locale, data.segments, collection, data.filename_id),
+  };
 }
 
 const filesExtensions = [".md", ".mdx"];

@@ -30,13 +30,19 @@
       "title": "Page not found",
       "description": "The page you are looking for does not exist.",
       "linkLabel": "Go back to the homepage",
-      "linkHref": "/en"
+      "linkHref": "/"
     },
     "es": {
       "title": "Página no encontrada",
       "description": "La página que buscas no existe.",
       "linkLabel": "Volver a la página de inicio",
-      "linkHref": "/es"
+      "linkHref": "/"
+    },
+    "it": {
+      "title": "Nope",
+      "description": "nope",
+      "linkLabel": "torna indietro",
+      "linkHref": "/"
     }
   }
 }

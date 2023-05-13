@@ -12,6 +12,10 @@ const nextConfig = {
         destination: "/admin/index.html",
       },
       ...rewrites,
+      {
+        source: "/es/artista/:slug*",
+        destination: "/es/artist/:slug*",
+      },
     ];
   },
 };

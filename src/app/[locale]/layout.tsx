@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 
-import "../../styles/globals.css";
 import { Inter } from "next/font/google";
 
-import type { Locale } from "../../i18n";
-import { i18n } from "../../i18n";
+import { GlobalProvider } from "@/components/context";
+import type { Locale } from "@/i18n";
 
 const display = Inter({
   subsets: ["latin"],
@@ -24,23 +23,20 @@ const sans = Inter({
   display: "swap",
 });
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
-
-type RootLayoutProps = {
+type LayoutProps = {
   children: ReactNode;
   params: {
-    lang: Locale;
+    locale: Locale;
   };
 };
 
-export default function LangLayout({ children, params: { lang } }: RootLayoutProps) {
+export default function RootLayout({ children, params }: LayoutProps) {
+  const { locale } = params;
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
   const cnBody = `${fonts} ${debugCn}`;
   return (
-    <html lang={lang}>
+    <html lang={locale}>
       <link href="/site.webmanifest" rel="manifest" />
       <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
       <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
@@ -49,7 +45,9 @@ export default function LangLayout({ children, params: { lang } }: RootLayoutPro
       <meta content="#ffffff" name="theme-color" />
       <meta content="#ffffff" name="msapplication-TileColor" />
       <meta content="/browserconfig.xml" name="msapplication-config" />
-      <body className={cnBody}>{children}</body>
+      <body className={cnBody}>
+        <GlobalProvider>{children}</GlobalProvider>
+      </body>
     </html>
   );
 }

@@ -1,23 +1,31 @@
 [
   {
-    "source": "/en/album/glow-on",
-    "destination": "/en/album/glow-on"
+    "source": "/en/album,/glow-on/:slug",
+    "destination": "/en/album/:slug"
   },
   {
-    "source": "/es/album/glow-on",
-    "destination": "/es/album/glow-on"
+    "source": "/es/album,/glow-on/:slug",
+    "destination": "/es/album/:slug"
   },
   {
-    "source": "/en/artist/turnstile",
-    "destination": "/en/artist/turnstile"
+    "source": "/it/album,/glow-on/:slug",
+    "destination": "/it/album/:slug"
   },
   {
-    "source": "/es/artista/turnstile",
-    "destination": "/es/artist/turnstile"
+    "source": "/it/album,/time-and-space/:slug",
+    "destination": "/it/album/:slug"
   },
   {
-    "source": "/it/artista/turnstile",
-    "destination": "/it/artist/turnstile"
+    "source": "/en/artist,/turnstile/:slug",
+    "destination": "/en/artist/:slug"
+  },
+  {
+    "source": "/es/artista,/turnstile/:slug",
+    "destination": "/es/artist/:slug"
+  },
+  {
+    "source": "/it/artista,/turnstile/:slug",
+    "destination": "/it/artist/:slug"
   },
   {
     "source": "/en/about",
