@@ -22,7 +22,7 @@ export const makeWriteObject = (locale, segments, collection, filename_id) => {
     };
   }
   return {
-    source: `/${locale}${segments.map(({ value }) => value)}/:slug`,
+    source: `/${locale}${segments.map(({ value }) => value)?.[0]}/:slug`,
     destination: `/${locale}/${collection}/:slug`,
   };
 };

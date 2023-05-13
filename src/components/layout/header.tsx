@@ -1,23 +1,36 @@
 import type { FC } from "react";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-// import { useGetLocale } from "@/lib";
+import { useGetLocale } from "@/lib";
 
 import { Container } from "../container";
-// import { useCustomRouter } from "../context";
+import { useGlobalContext } from "../context";
 
 import { DrawerButton, useGlobalDrawerId } from "./drawer";
 import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
 
+const useMyRouter = (component?: string) => {
+  const { navigation } = useGlobalContext();
+  const { locale } = useGetLocale();
+  if (navigation)
+    return navigation
+      .map((item) => ({
+        navigation: item?.[locale]?.map((link) => {
+          return {
+            label: link?.label,
+            href: `/${locale}${link?.href}`.replace(/\/(?!.*\w)/, ""),
+          };
+        }),
+        component: item?.label,
+      }))
+      .filter((item) => item.component === component)[0];
+};
+
 export const Header: FC = () => {
-  const segment = usePathname();
-  const navigation: { href: string; label: string }[] = [];
-  const locale = "en";
-  // const { locale, allDocuments, currentDocs, redirect } = useCustomRouter();
-  // const navigation = currentDocs;
-  // // console.log(locale, allDocuments, currentDocs);
+  const router = useMyRouter("header");
+  const navigation = router?.navigation;
+
   const drawerId = useGlobalDrawerId();
   return (
     <header>
@@ -27,23 +40,22 @@ export const Header: FC = () => {
         </div>
         <nav className="flex-none">
           <ul className="flex-none hidden px-1 menu menu-horizontal lg:flex">
-            {navigation.map((item, i) => {
-              const route = `/${item.href.trim()}`;
-              const routeIndex = route === `/${locale}/` ? `/${locale}` : route;
-              const isActive = segment === routeIndex;
-              return (
-                <li key={`${item.label}-${i}`}>
-                  <Link
-                    href={item.href}
-                    className={`btn btn-link hover:underline-offset-4 normal-case ${
-                      isActive ? "underline-offset-4" : "no-underline"
-                    } `}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+            {navigation &&
+              navigation.map((item, i) => {
+                const isActive = true;
+                return (
+                  <li key={`${item?.label}-${i}`}>
+                    <Link
+                      href={item?.href ?? "/"}
+                      className={`btn btn-link hover:underline-offset-4 normal-case ${
+                        isActive ? "underline-offset-4" : "no-underline"
+                      } `}
+                    >
+                      {item?.label}
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
         </nav>
 

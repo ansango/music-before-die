@@ -1,6 +1,7 @@
 import type { Collection } from "tinacms";
 
 import { i18n } from "../../../src/i18n";
+import { links } from "../objects";
 
 export const globalCollection: Collection = {
   label: "Global",
@@ -14,7 +15,23 @@ export const globalCollection: Collection = {
     },
   },
   fields: [
-    // TODO: Add a field for the main navigation etc.
+    {
+      type: "object",
+      label: "Navigation",
+      name: "navigation",
+      list: true,
+      ui: {
+        itemProps: ({ label }) => ({ label }),
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Label",
+          name: "label",
+        },
+        ...i18n.locales.map((locale) => links({ name: locale })),
+      ],
+    },
     {
       type: "object",
       label: "Social Links",
