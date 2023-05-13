@@ -8,14 +8,11 @@ import jsonGlobal from "../../content/global/index.json";
 
 type Global = Partial<GlobalContent>;
 
-export type Props = {
-  children: ReactNode;
-};
-
 type GlobalContextType = Global & {
   globalDrawer?: string;
 };
 const globalDrawer = "app-drawer";
+
 const initialValues: GlobalContextType = {
   ...(jsonGlobal as unknown as GlobalContextType),
   globalDrawer,
@@ -24,6 +21,10 @@ const initialValues: GlobalContextType = {
 const GlobalContext = createContext<GlobalContextType>(initialValues);
 
 GlobalContext.displayName = "GlobalContext";
+
+type Props = {
+  children: ReactNode;
+};
 
 export const GlobalProvider: FC<Props> = ({ children }) => (
   <GlobalContext.Provider value={{ ...initialValues }}>{children}</GlobalContext.Provider>

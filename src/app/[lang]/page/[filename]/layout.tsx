@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import type { Metadata } from "next";
 
-import { Theme, Transition } from "@/components";
+import { Layout, Transition } from "@/components";
 import type { Locale } from "@/i18n";
 import { i18n } from "@/i18n";
 import { getPage } from "@/lib";
@@ -72,8 +72,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default function PageLayout({ children }: { children: ReactNode }) {
   return (
-    <Theme>
+    <Layout>
       <Transition className="flex flex-col flex-1">{children}</Transition>
-    </Theme>
+    </Layout>
   );
 }

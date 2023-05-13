@@ -11,6 +11,12 @@ query pagesSegment {
       node {
         segment
         locale
+        id
+        _sys {
+          filename
+          breadcrumbs
+          relativePath
+        }
       }
     }
   }

@@ -1,48 +1,6 @@
-import type { Collection, TinaField } from "tinacms";
+import type { Collection } from "tinacms";
 
 import { i18n } from "../../../src/i18n";
-import { replacePath } from "../../../src/lib/utils";
-
-const collections = ["page", "album"];
-
-const collectionsField: Array<TinaField> = collections.map((collection) => ({
-  type: "object",
-  label: `Paths -> ${collection.charAt(0).toUpperCase() + collection.slice(1)}`,
-  name: collection,
-  list: true,
-  ui: {
-    itemProps: (values) => {
-      const label =
-        values &&
-        Object.values(values)
-          ?.map((value) => value && replacePath(value.href || ""))
-          ?.join(" -> ");
-
-      return {
-        label,
-      };
-    },
-  },
-  fields: i18n.locales.map((locale) => ({
-    type: "object",
-    label: locale,
-    name: locale,
-    fields: [
-      {
-        type: "reference",
-        label: "Link",
-        name: "href",
-
-        collections: [collection],
-      },
-      {
-        type: "string",
-        label: "Label",
-        name: "label",
-      },
-    ],
-  })),
-}));
 
 export const globalCollection: Collection = {
   label: "Global",
@@ -56,13 +14,7 @@ export const globalCollection: Collection = {
     },
   },
   fields: [
-    // {
-    //   type: "object",
-    //   label: "Paths",
-    //   name: "paths",
-
-    //   fields: collectionsField,
-    // },
+    // TODO: Add a field for the main navigation etc.
     {
       type: "object",
       label: "Social Links",

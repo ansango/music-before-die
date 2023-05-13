@@ -37,6 +37,7 @@ export const seo: TinaField = {
       type: "image",
       name: "partialSeoImage",
       label: "Partial Seo Image",
+      // TODO: change and add sharp dynamic image
     },
     {
       type: "string",

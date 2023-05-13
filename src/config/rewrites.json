@@ -1,18 +1,34 @@
 [
   {
+    "source": "/en/album/glow-on",
+    "destination": "/en/album/glow-on"
+  },
+  {
+    "source": "/es/album/glow-on",
+    "destination": "/es/album/glow-on"
+  },
+  {
+    "source": "/en/artist/turnstile",
+    "destination": "/en/artist/turnstile"
+  },
+  {
+    "source": "/es/artista/turnstile",
+    "destination": "/es/artist/turnstile"
+  },
+  {
     "source": "/en/about",
-    "destination": "/en/about"
+    "destination": "/en/page/about"
   },
   {
     "source": "/es/sobre-nosotros",
-    "destination": "/es/about"
+    "destination": "/es/page/about"
   },
   {
     "source": "/en",
-    "destination": "/en/index"
+    "destination": "/en/page/index"
   },
   {
     "source": "/es",
-    "destination": "/es/index"
+    "destination": "/es/page/index"
   }
 ]
