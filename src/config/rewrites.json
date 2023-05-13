@@ -21,22 +21,22 @@
   },
   {
     "source": "/en/about",
-    "destination": "/en/page/about"
+    "destination": "/en/about"
   },
   {
     "source": "/es/sobre-nosotros",
-    "destination": "/es/page/about"
+    "destination": "/es/about"
   },
   {
     "source": "/it/siamo-noi",
-    "destination": "/it/page/about"
+    "destination": "/it/about"
   },
   {
     "source": "/en",
-    "destination": "/en/page/index"
+    "destination": "/en/index"
   },
   {
     "source": "/es",
-    "destination": "/es/page/index"
+    "destination": "/es/index"
   }
 ]

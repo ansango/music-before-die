@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 
-const redirects = require("./src/config/redirects.json");
 const rewrites = require("./src/config/rewrites.json");
 
 const nextConfig = {
@@ -14,9 +13,6 @@ const nextConfig = {
       },
       ...rewrites,
     ];
-  },
-  async redirects() {
-    return [...redirects];
   },
 };
 

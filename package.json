@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "rewrites": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/rewrites.mjs",
-    "redirects": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/redirects.mjs",
-    "nextconfig": "npm run rewrites && npm run redirects",
+    "nextconfig": "npm run rewrites",
     "pre": "npm run nextconfig && next dev",
     "dev": "tinacms dev -c \"yarn pre\"",
     "prebuild": "tinacms build && npm run nextconfig",
