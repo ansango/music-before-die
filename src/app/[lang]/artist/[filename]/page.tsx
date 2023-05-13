@@ -19,5 +19,5 @@ export async function generateStaticParams() {
 
 export default function Page({ params }: { params: { filename: string } }) {
   console.log("params", params);
-  return <>Hola soy yo</>;
+  return <>Artist</>;
 }

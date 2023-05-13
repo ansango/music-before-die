@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "rewrites": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/rewrites.mjs",
-    "pre": "npm run rewrites && next dev",
+    "redirects": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/redirects.mjs",
+    "nextconfig": "npm run rewrites && npm run redirects",
+    "pre": "npm run nextconfig && next dev",
     "dev": "tinacms dev -c \"yarn pre\"",
-    "prebuild": "tinacms build && npm run rewrites",
+    "prebuild": "tinacms build && npm run nextconfig",
     "build": "next build",
-    "start": "tinacms build && npm run rewrites && next start",
+    "start": "tinacms build && npm run nextconfig && next start",
     "lint": "next lint"
   },
   "dependencies": {

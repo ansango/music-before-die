@@ -16,12 +16,20 @@
     "destination": "/es/artist/turnstile"
   },
   {
+    "source": "/it/artista/turnstile",
+    "destination": "/it/artist/turnstile"
+  },
+  {
     "source": "/en/about",
     "destination": "/en/page/about"
   },
   {
     "source": "/es/sobre-nosotros",
     "destination": "/es/page/about"
+  },
+  {
+    "source": "/it/siamo-noi",
+    "destination": "/it/page/about"
   },
   {
     "source": "/en",

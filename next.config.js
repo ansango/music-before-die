@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 
-const dataRewrites = require("./src/config/rewrites.json");
+const redirects = require("./src/config/redirects.json");
+const rewrites = require("./src/config/rewrites.json");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -11,8 +12,11 @@ const nextConfig = {
         source: "/admin",
         destination: "/admin/index.html",
       },
-      ...dataRewrites,
+      ...rewrites,
     ];
+  },
+  async redirects() {
+    return [...redirects];
   },
 };
 

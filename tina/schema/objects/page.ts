@@ -23,18 +23,35 @@ export const page: Array<TinaField> = [
       "Unique identifier for the filename equal in i18n versions: about => about.es.mdx, about.en.mdx",
   },
   {
-    type: "string",
-    label: "Segment",
-    name: "segment",
+    type: "object",
+    label: "Segments",
+    name: "segments",
     required: true,
-    description: "Segment of the url: /about, /sobre-nosotros",
+    list: true,
+    description: "Segments of the url: /about, /sobre-nosotros, /artist/acdc, artista/acdc",
     ui: {
-      validate(value: string) {
-        if (!value) return "Required.";
-        if (value === "/") return;
-        if (!patternSegment.test(value)) return "Not a valid segment.";
+      itemProps(item) {
+        return {
+          label: item.value,
+        };
       },
     },
+    fields: [
+      {
+        type: "string",
+        label: "Value",
+        name: "value",
+        required: true,
+
+        ui: {
+          validate(value: string) {
+            if (!value) return "Required.";
+            if (value === "/") return;
+            if (!patternSegment.test(value)) return "Not a valid segment.";
+          },
+        },
+      },
+    ],
   },
   {
     type: "string",

@@ -1,0 +1,37 @@
+[
+  {
+    "source": "/es/artist/:slug",
+    "destination": "/es/artista/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/it/artist/:slug",
+    "destination": "/it/artista/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/en/page/:slug",
+    "destination": "/en/about/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/es/page/:slug",
+    "destination": "/es/sobre-nosotros/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/it/page/:slug",
+    "destination": "/it/siamo-noi/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/en/page/:slug",
+    "destination": "/en/:slug",
+    "permanent": false
+  },
+  {
+    "source": "/es/page/:slug",
+    "destination": "/es/:slug",
+    "permanent": false
+  }
+]

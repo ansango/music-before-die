@@ -5,10 +5,19 @@ import { generateJsonFile, getDataFromMarkdownFile, getFilesFromFolder } from ".
 function getPagesFromFiles(files) {
   const pages = [];
   for (const file of files) {
-    const data = getDataFromMarkdownFile(file);
+    const {
+      locale,
+      segments: _segments,
+      collection,
+      filename_id: filename,
+    } = getDataFromMarkdownFile(file);
+    const segments = _segments
+      .filter(({ value }) => value !== "/")
+      .map(({ value }) => value)
+      .join("");
 
-    const source = `/${data.locale}${data.segment === "/" ? "" : data.segment}`;
-    const destination = `/${data.locale}/${data.collection}/${data.filename_id}`;
+    const source = `/${locale}${segments}`;
+    const destination = `/${locale}/${collection}/${filename}`;
 
     pages.push({
       source,

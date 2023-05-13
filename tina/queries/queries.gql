@@ -4,20 +4,3 @@ query contentQuery($relativePath: String!) {
     ...PageParts
   }
 }
-
-query pagesSegment {
-  pageConnection {
-    edges {
-      node {
-        segment
-        locale
-        id
-        _sys {
-          filename
-          breadcrumbs
-          relativePath
-        }
-      }
-    }
-  }
-}
