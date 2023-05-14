@@ -1,10 +1,13 @@
 import type { Locale } from "@/i18n";
 import { getArtists } from "@/lib";
 
-export async function generateStaticParams() {
-  return ((await getArtists()) ?? []).map((page) => ({
-    filename: page._sys?.filename,
-  }));
+export async function generateStaticParams({ params: { locale } }: { params: { locale: Locale } }) {
+  return ((await getArtists()) ?? [])
+    .map((page) => ({
+      filename: page._sys?.filename,
+      locale: page.locale,
+    }))
+    .filter((page) => page.locale === locale);
 }
 
 type PageProps = {

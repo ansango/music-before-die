@@ -5,10 +5,13 @@ import { BodySimple, HeroBase } from "@/components/cms";
 import type { Locale } from "@/i18n";
 import { getPages, getPage } from "@/lib";
 
-export async function generateStaticParams() {
-  return ((await getPages()) ?? []).map((page) => ({
-    filename: page._sys?.filename,
-  }));
+export async function generateStaticParams({ params: { locale } }: { params: { locale: Locale } }) {
+  return ((await getPages()) ?? [])
+    .map((page) => ({
+      filename: page._sys?.filename,
+      locale: page.locale,
+    }))
+    .filter((page) => page.locale === locale);
 }
 
 type PageProps = {
