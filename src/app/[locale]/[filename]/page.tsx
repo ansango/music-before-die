@@ -8,7 +8,6 @@ import { getPages, getPage } from "@/lib";
 export async function generateStaticParams() {
   return ((await getPages()) ?? []).map((page) => ({
     filename: page._sys?.filename,
-    locale: page.locale,
   }));
 }
 
