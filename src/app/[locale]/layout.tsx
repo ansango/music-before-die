@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { GlobalProvider } from "@/components/context";
 import type { Locale } from "@/i18n";
+import { i18n } from "@/i18n";
 import { getContent } from "@/lib";
 
 const display = Inter({
@@ -30,6 +31,10 @@ type LayoutProps = {
     locale: Locale;
   };
 };
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const content = await getContent();
