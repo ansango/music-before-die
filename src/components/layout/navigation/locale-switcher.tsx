@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-import { i18n } from "@/i18n";
-import { useGetLocale } from "@/lib";
+import { useLocaleSwitcher } from "@/components/context";
 
 export const LocaleSwitcher = () => {
-  const { locale } = useGetLocale();
+  const { locale, destinations } = useLocaleSwitcher();
 
   return (
     <li className="dropdown dropdown-end">
@@ -16,10 +15,10 @@ export const LocaleSwitcher = () => {
       </label>
       <ul className="w-20 p-2 shadow dropdown-content menu bg-base-100 rounded-box" tabIndex={0}>
         <li>
-          {i18n.locales.map((loc) => {
+          {destinations?.map(({ link, locale }) => {
             return (
-              <Link href={`/${loc}`} key={loc} className="px-1 py-1">
-                {loc}
+              <Link href={link} key={locale} className="px-1 py-1">
+                {locale}
               </Link>
             );
           })}
