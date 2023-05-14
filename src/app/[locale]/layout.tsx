@@ -31,7 +31,7 @@ type LayoutProps = {
   };
 };
 
-export default async function RootLayout({ children, params }: LayoutProps) {
+export default async function LocaleLayout({ children, params }: LayoutProps) {
   const content = await getContent();
 
   const { locale } = params;

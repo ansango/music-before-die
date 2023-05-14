@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const withNextIntl = require("next-intl/plugin")("./src/i18n.ts");
+
 const rewritesJson = require("./src/config/rewrites.json");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  i18n: {
-    defaultLocale: "es",
-    locales: ["en", "es", "it"],
-  },
+
   async rewrites() {
     return [
       ...rewritesJson,
@@ -14,12 +14,8 @@ const nextConfig = {
         source: "/admin",
         destination: "/admin/index.html",
       },
-      {
-        source: "/",
-        destination: "/index",
-      },
     ];
   },
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);
