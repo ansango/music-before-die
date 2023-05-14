@@ -4,8 +4,7 @@ import Balancer from "react-wrap-balancer";
 import type { TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-import { Container } from "../../container";
-import { Section } from "../../section";
+import { DefaultContainer, DefaultSection } from "../../layout";
 
 const sizeOptions = {
   md: "prose-md lg:prose-lg xl:prose-xl",
@@ -63,14 +62,14 @@ export const BodySimple: FC<BodySimpleProps> = ({
   const cnPaddingBottom = paddingBottomCn[paddingBottom || "none"];
   const cnPadding = `${cnPaddingTop} ${cnPaddingBottom}`;
   return (
-    <Section className={`!flex-none ${cnPadding}`}>
-      <Container className={`flex ${cnCenter} ${cnAlign}`}>
+    <DefaultSection className={`!flex-none ${cnPadding}`}>
+      <DefaultContainer className={`flex ${cnCenter} ${cnAlign}`}>
         <article className={`prose ${cnSize} dark:prose-invert`}>
           <Balancer>
             <TinaMarkdown content={content} />
           </Balancer>
         </article>
-      </Container>
-    </Section>
+      </DefaultContainer>
+    </DefaultSection>
   );
 };

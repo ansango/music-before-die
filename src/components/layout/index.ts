@@ -1,4 +1,5 @@
 export * from "./footer";
 export * from "./header";
 export * from "./layout";
-export * from "./transition";
+export * from "./utils";
+export * from "./error";

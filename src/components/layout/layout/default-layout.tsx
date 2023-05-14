@@ -4,9 +4,9 @@ import type { FC, ReactNode } from "react";
 
 import { ThemeProvider } from "next-themes";
 
-import { GlobalDrawer, GlobalDrawerSide, DrawerContent } from "./drawer";
-import { Footer } from "./footer";
-import { Header } from "./header";
+import { GlobalDrawer, GlobalDrawerSide, DrawerContent } from "../drawer";
+import { Footer } from "../footer";
+import { Header } from "../header";
 
 type Props = {
   children: ReactNode;
@@ -18,7 +18,7 @@ const config = {
   attribute: "data-theme",
 };
 
-export const Layout: FC<Props> = ({ children }) => {
+export const DefaultLayout: FC<Props> = ({ children }) => {
   return (
     <ThemeProvider {...config}>
       <GlobalDrawer>

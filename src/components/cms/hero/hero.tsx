@@ -2,8 +2,7 @@ import type { FC } from "react";
 
 import Balancer from "react-wrap-balancer";
 
-import { Container } from "../../container";
-import { Section } from "../../section";
+import { DefaultContainer, DefaultSection } from "../../layout";
 
 export type HeroBaseProps = {
   headline?: string;
@@ -43,8 +42,8 @@ export const HeroBase: FC<HeroBaseProps> = ({
   const cnRotationTitle = rotationTitle && rotationTitleCn[rotationTitle];
 
   return (
-    <Section className="w-full max-w-screen-lg mx-auto">
-      <Container className={`h-[65vh] flex items-center ${cnContainer}`}>
+    <DefaultSection className="w-full max-w-screen-lg mx-auto">
+      <DefaultContainer className={`h-[65vh] flex items-center ${cnContainer}`}>
         <div className={`space-y-5 ${cnText}`}>
           {tagline && (
             <span className="font-sans font-medium tracking-widest text-primary">
@@ -58,7 +57,7 @@ export const HeroBase: FC<HeroBaseProps> = ({
             </span>
           )}
         </div>
-      </Container>
-    </Section>
+      </DefaultContainer>
+    </DefaultSection>
   );
 };

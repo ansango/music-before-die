@@ -37,7 +37,8 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale } = params;
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
-  const cnBody = `${fonts} ${debugCn}`;
+  const cnBody = `${fonts} ${debugCn}`.trim();
+
   return (
     <html lang={locale}>
       <link href="/site.webmanifest" rel="manifest" />

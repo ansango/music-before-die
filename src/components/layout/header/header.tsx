@@ -2,10 +2,10 @@ import type { FC } from "react";
 
 import Link from "next/link";
 
-import { Container } from "../container";
-import { usePagesNavigation } from "../context";
+import { usePagesNavigation } from "../../context";
+import { DrawerButton, useGlobalDrawerId } from "../drawer";
+import { DefaultContainer } from "../utils";
 
-import { DrawerButton, useGlobalDrawerId } from "./drawer";
 import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
 
 export const Header: FC = () => {
@@ -14,7 +14,7 @@ export const Header: FC = () => {
 
   return (
     <header>
-      <Container className="max-w-screen-lg navbar bg-base-100">
+      <DefaultContainer className="max-w-screen-lg navbar bg-base-100">
         <div className="flex-1">
           <a className="normal-case btn btn-sm btn-ghost">mbd</a>
         </div>
@@ -59,7 +59,7 @@ export const Header: FC = () => {
             ></path>
           </svg>
         </DrawerButton>
-      </Container>
+      </DefaultContainer>
     </header>
   );
 };

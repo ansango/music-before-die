@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { useGetLocale } from "@/lib";
 
-import { Container } from "../container";
+import { DefaultContainer } from "../utils";
 
 export const Footer: FC = () => {
   const { locale } = useGetLocale();
@@ -12,7 +12,7 @@ export const Footer: FC = () => {
   const social: { href: string; label: string }[] = [];
   return (
     <footer className="pt-20 bg-neutral">
-      <Container className="max-w-screen-lg p-10 footer text-neutral-content">
+      <DefaultContainer className="max-w-screen-lg p-10 footer text-neutral-content">
         <div>
           <span className="footer-title">Navigation</span>
           {navigation.map((item, i) => {
@@ -48,7 +48,7 @@ export const Footer: FC = () => {
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
         </div>
-      </Container>
+      </DefaultContainer>
     </footer>
   );
 };

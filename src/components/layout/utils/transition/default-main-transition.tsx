@@ -1,5 +1,3 @@
-"use client";
-
 import type { FC, ReactNode } from "react";
 
 import { motion } from "framer-motion";
@@ -9,7 +7,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const Transition: FC<Props> = ({ children, className }) => {
+export const DefaultMainTransition: FC<Props> = ({ children, className }) => {
   return (
     <motion.main
       initial={{ opacity: 0, y: 20 }}

@@ -5,18 +5,21 @@ import { BodySimple, HeroBase } from "@/components/cms";
 import type { Locale } from "@/i18n";
 import { getPages, getPage } from "@/lib";
 
-type Params = {
-  filename: string;
-  locale: Locale;
-};
-
 export async function generateStaticParams() {
-  return ((await getPages()) ?? []).map((page) => {
-    return { filename: page._sys?.filename, locale: page.locale };
-  });
+  return ((await getPages()) ?? []).map((page) => ({
+    filename: page._sys?.filename,
+    locale: page.locale,
+  }));
 }
 
-export default async function Page({ params }: { params: Params }) {
+type PageProps = {
+  params: {
+    filename: string;
+    locale: Locale;
+  };
+};
+
+export default async function Page({ params }: PageProps) {
   const relativePath = `${params.filename}.${params.locale}.mdx`;
 
   const content = await getPage(relativePath);
