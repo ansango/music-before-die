@@ -2,36 +2,16 @@ import type { FC } from "react";
 
 import Link from "next/link";
 
-import { useGetLocale } from "@/lib";
-
 import { Container } from "../container";
-import { useGlobalContext } from "../context";
+import { usePagesNavigation } from "../context";
 
 import { DrawerButton, useGlobalDrawerId } from "./drawer";
 import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
 
-const useMyRouter = (component?: string) => {
-  const { navigation } = useGlobalContext();
-  const { locale } = useGetLocale();
-  if (navigation)
-    return navigation
-      .map((item) => ({
-        navigation: item?.[locale]?.map((link) => {
-          return {
-            label: link?.label,
-            href: `/${locale}${link?.href}`.replace(/\/(?!.*\w)/, ""),
-          };
-        }),
-        component: item?.label,
-      }))
-      .filter((item) => item.component === component)[0];
-};
-
 export const Header: FC = () => {
-  const router = useMyRouter("header");
-  const navigation = router?.navigation;
-
+  const navigation = usePagesNavigation();
   const drawerId = useGlobalDrawerId();
+
   return (
     <header>
       <Container className="max-w-screen-lg navbar bg-base-100">
@@ -46,7 +26,7 @@ export const Header: FC = () => {
                 return (
                   <li key={`${item?.label}-${i}`}>
                     <Link
-                      href={item?.href ?? "/"}
+                      href={item?.link ?? "/"}
                       className={`btn btn-link hover:underline-offset-4 normal-case ${
                         isActive ? "underline-offset-4" : "no-underline"
                       } `}

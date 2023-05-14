@@ -3,10 +3,9 @@
 import type { FC, ReactNode } from "react";
 import { useContext, createContext } from "react";
 
-import type { Global as GlobalContent } from "../../../tina/__generated__/types";
-import jsonGlobal from "../../content/global/index.json";
+import type { ContentQuery as GlobalContent } from "../../../tina/__generated__/types";
 
-type Global = Partial<GlobalContent>;
+type Global = Partial<GlobalContent["global"]>;
 
 type GlobalContextType = Global & {
   globalDrawer?: string;
@@ -14,7 +13,6 @@ type GlobalContextType = Global & {
 const globalDrawer = "app-drawer";
 
 const initialValues: GlobalContextType = {
-  ...(jsonGlobal as unknown as GlobalContextType),
   globalDrawer,
 };
 
@@ -23,11 +21,14 @@ const GlobalContext = createContext<GlobalContextType>(initialValues);
 GlobalContext.displayName = "GlobalContext";
 
 type Props = {
+  content?: Global;
   children: ReactNode;
 };
 
-export const GlobalProvider: FC<Props> = ({ children }) => (
-  <GlobalContext.Provider value={{ ...initialValues }}>{children}</GlobalContext.Provider>
+export const GlobalProvider: FC<Props> = ({ children, content }) => (
+  <GlobalContext.Provider value={{ ...initialValues, ...content }}>
+    {children}
+  </GlobalContext.Provider>
 );
 
 export const useGlobalContext = () => {

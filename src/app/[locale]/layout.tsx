@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { GlobalProvider } from "@/components/context";
 import type { Locale } from "@/i18n";
+import { getContent } from "@/lib";
 
 const display = Inter({
   subsets: ["latin"],
@@ -30,7 +31,9 @@ type LayoutProps = {
   };
 };
 
-export default function RootLayout({ children, params }: LayoutProps) {
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const content = await getContent();
+
   const { locale } = params;
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
   const fonts = `${display.variable} ${serif.variable} ${sans.variable}`;
@@ -46,7 +49,7 @@ export default function RootLayout({ children, params }: LayoutProps) {
       <meta content="#ffffff" name="msapplication-TileColor" />
       <meta content="/browserconfig.xml" name="msapplication-config" />
       <body className={cnBody}>
-        <GlobalProvider>{children}</GlobalProvider>
+        <GlobalProvider content={content}>{children}</GlobalProvider>
       </body>
     </html>
   );

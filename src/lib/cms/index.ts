@@ -5,6 +5,11 @@ export async function getGlobal() {
   return globalConnection.data.globalConnection.edges?.map((item) => ({ ...item?.node }));
 }
 
+export async function getContent() {
+  const contentConnection = await tina.queries.content();
+  return contentConnection.data.global;
+}
+
 export async function getPages() {
   const pages = await tina.queries.pagesConnection();
   return pages.data.pagesConnection.edges?.map((item) => ({ ...item?.node }));

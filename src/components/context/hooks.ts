@@ -14,3 +14,18 @@ export const useNotFound = () => {
   const { notFound } = useGlobalContext();
   return { ...(notFound?.[locale] ?? defaultNotFound), locale };
 };
+
+export const usePagesNavigation = () => {
+  const { locale } = useGetLocale();
+  const { sitemap: _sitemap } = useGlobalContext();
+  const sitemap = _sitemap?.[locale];
+
+  return sitemap?.sections
+    ?.flatMap((section) =>
+      section?.link?.segments.map(({ value }) => ({
+        label: section.label,
+        link: value ? `/${locale}${value}`.replace(/\/(?!.*\w)/, "") : undefined,
+      }))
+    )
+    .filter((segment) => segment?.link);
+};
