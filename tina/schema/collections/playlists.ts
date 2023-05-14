@@ -5,7 +5,7 @@ import { pageWithSeo } from "../objects";
 
 export const playlistsCollection: Collection = {
   label: "Playlists",
-  name: "playlist",
+  name: "playlists",
   path: "src/content/playlists",
   format: "mdx",
   ui: {

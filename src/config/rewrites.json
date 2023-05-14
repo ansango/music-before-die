@@ -1,27 +1,31 @@
 [
   {
-    "source": "/en/album/:slug",
-    "destination": "/en/album/:slug"
+    "source": "/en/albums/:slug",
+    "destination": "/en/albums/:slug"
   },
   {
-    "source": "/es/album/:slug",
-    "destination": "/es/album/:slug"
+    "source": "/es/discos/:slug",
+    "destination": "/es/albums/:slug"
+  },
+  {
+    "source": "/it/dischi/:slug",
+    "destination": "/it/albums/:slug"
   },
   {
     "source": "/it/album/:slug",
-    "destination": "/it/album/:slug"
+    "destination": "/it/albums/:slug"
   },
   {
-    "source": "/en/artist/:slug",
-    "destination": "/en/artist/:slug"
+    "source": "/en/artists/:slug",
+    "destination": "/en/artists/:slug"
   },
   {
-    "source": "/es/artista/:slug",
-    "destination": "/es/artist/:slug"
+    "source": "/es/artistas/:slug",
+    "destination": "/es/artists/:slug"
   },
   {
-    "source": "/it/artista/:slug",
-    "destination": "/it/artist/:slug"
+    "source": "/it/artisti/:slug",
+    "destination": "/it/artists/:slug"
   },
   {
     "source": "/en/about",
@@ -36,11 +40,39 @@
     "destination": "/it/about"
   },
   {
+    "source": "/en/albums",
+    "destination": "/en/albums"
+  },
+  {
+    "source": "/es/discos",
+    "destination": "/es/albums"
+  },
+  {
+    "source": "/it/dischi",
+    "destination": "/it/albums"
+  },
+  {
+    "source": "/en/artists",
+    "destination": "/en/artists"
+  },
+  {
+    "source": "/es/artistas",
+    "destination": "/es/artists"
+  },
+  {
+    "source": "/it/artisti",
+    "destination": "/it/artists"
+  },
+  {
     "source": "/en",
     "destination": "/en/index"
   },
   {
     "source": "/es",
     "destination": "/es/index"
+  },
+  {
+    "source": "/it",
+    "destination": "/it/index"
   }
 ]

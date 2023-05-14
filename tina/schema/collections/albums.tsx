@@ -41,7 +41,7 @@ const albumFields: Array<TinaField> = [
   },
   {
     type: "reference",
-    collections: ["artist"],
+    collections: ["artists"],
     label: "Artist",
     name: "artist",
     required: true,
@@ -92,7 +92,6 @@ const albumFields: Array<TinaField> = [
     required: true,
     description: "Genre of the album",
     list: true,
-
     ui: {
       component({ field, input }) {
         return (
@@ -145,8 +144,8 @@ const albumFields: Array<TinaField> = [
 
 export const albumsCollection: Collection = {
   label: "Albums",
-  name: "album",
-  path: "src/content/album",
+  name: "albums",
+  path: "src/content/albums",
   format: "mdx",
   ui: {
     filename: {

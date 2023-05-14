@@ -19,42 +19,75 @@
       "linkHref": "/"
     }
   },
-  "navigation": [
-    {
-      "label": "header",
-      "en": [
+  "sitemap": {
+    "en": {
+      "sections": [
         {
-          "href": "/",
-          "label": "home"
+          "label": "Home",
+          "link": "src/content/pages/index.en.mdx"
         },
         {
-          "href": "/about",
-          "label": "about"
-        }
-      ],
-      "es": [
-        {
-          "href": "/",
-          "label": "inicio"
+          "label": "About",
+          "link": "src/content/pages/about.en.mdx"
         },
         {
-          "href": "/sobre-nosotros",
-          "label": "nosotros"
-        }
-      ],
-      "it": [
-        {
-          "href": "/",
-          "label": "inizio"
+          "label": "Artists",
+          "link": "src/content/pages/artists.en.mdx"
         },
         {
-          "href": "/siamo-noi",
-          "label": "siamo noi"
+          "label": "Albums",
+          "link": "src/content/pages/albums.en.mdx"
+        },
+        {
+          "label": "Playlists"
         }
       ]
     },
-    {
-      "label": "footer"
+    "es": {
+      "sections": [
+        {
+          "label": "Inicio",
+          "link": "src/content/pages/index.es.mdx"
+        },
+        {
+          "label": "About",
+          "link": "src/content/pages/about.es.mdx"
+        },
+        {
+          "label": "Artistas",
+          "link": "src/content/pages/artists.es.mdx"
+        },
+        {
+          "label": "Albums",
+          "link": "src/content/pages/albums.es.mdx"
+        },
+        {
+          "label": "Playlists"
+        }
+      ]
+    },
+    "it": {
+      "sections": [
+        {
+          "label": "Home",
+          "link": "src/content/pages/index.it.mdx"
+        },
+        {
+          "label": "About",
+          "link": "src/content/pages/about.it.mdx"
+        },
+        {
+          "label": "Artisti",
+          "link": "src/content/pages/artists.it.mdx"
+        },
+        {
+          "label": "Albums",
+          "link": "src/content/pages/albums.it.mdx"
+        },
+        {
+          "label": "Playlists"
+        }
+      ]
     }
-  ]
+  }
 }

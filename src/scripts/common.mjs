@@ -15,7 +15,7 @@ export function generateJsonFile(pages, path) {
 }
 
 export const makeWriteObject = (locale, segments, collection, filename_id) => {
-  if (collection === "page") {
+  if (collection === "pages") {
     return {
       source: `/${locale}${segments.map(({ value }) => value).join("")}`.replace(/\/(?!.*\w)/, ""),
       destination: `/${locale}/${filename_id}`.replace(/\/(?!.*\w)/, ""),

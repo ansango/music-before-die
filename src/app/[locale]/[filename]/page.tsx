@@ -28,11 +28,11 @@ export default async function Page({ params }: { params: Params }) {
       {page.blocks?.map((block, index) => {
         const key = `${block?.__typename}-${index}`;
         switch (block?.__typename) {
-          case "PageBlocksHeroBase": {
+          case "PagesBlocksHeroBase": {
             if (!block?.visible) return null;
             return <HeroBase key={key} {...(block as HeroBaseProps)} />;
           }
-          case "PageBlocksBodySimple": {
+          case "PagesBlocksBodySimple": {
             if (!block.visible || block.content.children.length === 0) return null;
             return <BodySimple key={key} {...(block as BodySimpleProps)} />;
           }

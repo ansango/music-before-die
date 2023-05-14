@@ -6,8 +6,8 @@ import { pageWithSeo } from "../objects";
 
 export const pagesCollection: Collection = {
   label: "Pages",
-  name: "page",
-  path: "src/content/page",
+  name: "pages",
+  path: "src/content/pages",
   format: "mdx",
   ui: {
     filename: {
@@ -23,7 +23,7 @@ export const pagesCollection: Collection = {
       type: "object",
       list: true,
       name: "blocks",
-      label: "Sections",
+      label: "Blocks",
       ui: {
         visualSelector: true,
       },

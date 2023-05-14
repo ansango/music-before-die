@@ -28,7 +28,7 @@ const artistFields: Array<TinaField> = [
         type: "reference",
         label: "Album",
         name: "album",
-        collections: ["album"],
+        collections: ["albums"],
         required: true,
       },
     ],
@@ -45,8 +45,8 @@ const artistFields: Array<TinaField> = [
 
 export const artistsCollection: Collection = {
   label: "Artists",
-  name: "artist",
-  path: "src/content/artist",
+  name: "artists",
+  path: "src/content/artists",
   format: "mdx",
   ui: {
     filename: {

@@ -3,6 +3,9 @@ import type { Collection } from "tinacms";
 import { i18n } from "../../../src/i18n";
 import { links } from "../objects";
 
+type Section = "pages" | "artists" | "albums" | "playlists";
+const sections: Array<Section> = ["pages", "artists", "albums", "playlists"];
+
 export const globalCollection: Collection = {
   label: "Global",
   name: "global",
@@ -17,42 +20,76 @@ export const globalCollection: Collection = {
   fields: [
     {
       type: "object",
-      label: "Navigation",
-      name: "navigation",
-      list: true,
+      label: "Sitemap",
+      name: "sitemap",
+      description: "The sitemap is used to generate the navigation.",
       ui: {
         itemProps: ({ label }) => ({ label }),
       },
-      fields: [
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-        },
-        ...i18n.locales.map((locale) => links({ name: locale })),
-      ],
+      fields: i18n.locales.map((locale) => ({
+        type: "object",
+        label: locale,
+        name: locale,
+        description: `The sitemap is used to generate the navigation for ${locale}.`,
+        fields: [
+          {
+            type: "object",
+            label: "Sections",
+            name: "sections",
+            description:
+              "The sections are used to generate the primary navigation, usually the main pages.",
+            list: true,
+            ui: {
+              itemProps: ({ label }) => ({ label: `${locale}/${label ?? "item"}`.toLowerCase() }),
+            },
+            fields: [
+              {
+                type: "string",
+                label: "Label",
+                name: "label",
+              },
+
+              {
+                type: "reference",
+                label: "Link",
+                name: "link",
+                description: `Be sure to reference '${locale}' locale page.`,
+                collections: [...sections.filter((section) => section === "pages")],
+              },
+              {
+                type: "object",
+                label: "Sections",
+                name: "sections",
+                description: `Usually the sub pages as ${[
+                  ...sections.filter((section) => section !== "pages"),
+                ].join(", ")}.`,
+                list: true,
+                ui: {
+                  itemProps: ({ label }) => ({
+                    label: `${label ?? "item"}`.toLowerCase(),
+                  }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    label: "Label",
+                    name: "label",
+                  },
+
+                  {
+                    type: "reference",
+                    label: "Link",
+                    name: "link",
+                    collections: [...sections.filter((section) => section !== "pages")],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      })),
     },
-    {
-      type: "object",
-      label: "Social Links",
-      name: "social",
-      list: true,
-      ui: {
-        itemProps: ({ label }) => ({ label }),
-      },
-      fields: [
-        {
-          type: "string",
-          label: "Link",
-          name: "href",
-        },
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-        },
-      ],
-    },
+
     {
       type: "object",
       label: "404",
@@ -87,6 +124,27 @@ export const globalCollection: Collection = {
           },
         ],
       })),
+    },
+    {
+      type: "object",
+      label: "Social Links",
+      name: "social",
+      list: true,
+      ui: {
+        itemProps: ({ label }) => ({ label }),
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Link",
+          name: "href",
+        },
+        {
+          type: "string",
+          label: "Label",
+          name: "label",
+        },
+      ],
     },
   ],
 };
