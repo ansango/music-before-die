@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { ThemeProvider } from "next-themes";
 
@@ -8,17 +8,13 @@ import { GlobalDrawer, GlobalDrawerSide, DrawerContent } from "../drawer";
 import { Footer } from "../footer";
 import { Header } from "../header";
 
-type Props = {
-  children: ReactNode;
-};
-
 const config = {
   themes: ["lofi", "black"],
   enableSystem: false,
   attribute: "data-theme",
 };
 
-export const DefaultLayout: FC<Props> = ({ children }) => {
+export const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ThemeProvider {...config}>
       <GlobalDrawer>

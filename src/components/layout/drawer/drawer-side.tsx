@@ -1,13 +1,8 @@
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { useGlobalDrawerId } from "./drawer";
 
-type Props = {
-  drawerId: string;
-  children: ReactNode;
-};
-
-export const DrawerSide: FC<Props> = ({ children, drawerId }) => {
+export const DrawerSide: FC<PropsWithChildren<{ drawerId: string }>> = ({ children, drawerId }) => {
   return (
     <div className="drawer-side">
       <label htmlFor={drawerId} className="drawer-overlay"></label>
@@ -16,7 +11,7 @@ export const DrawerSide: FC<Props> = ({ children, drawerId }) => {
   );
 };
 
-export const GlobalDrawerSide: FC<Pick<Props, "children">> = ({ children }) => {
+export const GlobalDrawerSide: FC<PropsWithChildren> = ({ children }) => {
   const drawerId = useGlobalDrawerId();
   return <DrawerSide drawerId={drawerId}>{children}</DrawerSide>;
 };

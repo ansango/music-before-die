@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePagesNavigation } from "../../context";
 import { DrawerButton, useGlobalDrawerId } from "../drawer";
 import { DefaultContainer } from "../utils";
+
 import { ThemeSwitcher } from "./navigation";
 
 export const Header: FC = () => {

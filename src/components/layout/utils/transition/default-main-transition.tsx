@@ -1,13 +1,11 @@
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { motion } from "framer-motion";
 
-type Props = {
-  className?: string;
-  children: ReactNode;
-};
-
-export const DefaultMainTransition: FC<Props> = ({ children, className }) => {
+export const DefaultMainTransition: FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className,
+}) => {
   return (
     <motion.main
       initial={{ opacity: 0, y: 20 }}

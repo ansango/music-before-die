@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 import { useContext, createContext } from "react";
 
 import type { ContentQuery as GlobalContent } from "../../../tina/__generated__/types";
@@ -20,12 +20,10 @@ const GlobalContext = createContext<GlobalContextType>(initialValues);
 
 GlobalContext.displayName = "GlobalContext";
 
-type Props = {
-  content?: Global;
-  children: ReactNode;
-};
-
-export const GlobalProvider: FC<Props> = ({ children, content }) => (
+export const GlobalProvider: FC<PropsWithChildren<{ content?: Global }>> = ({
+  children,
+  content,
+}) => (
   <GlobalContext.Provider value={{ ...initialValues, ...content }}>
     {children}
   </GlobalContext.Provider>

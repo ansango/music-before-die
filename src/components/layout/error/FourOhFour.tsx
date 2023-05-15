@@ -1,11 +1,13 @@
+import type { FC } from "react";
+
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import { useNotFound } from "@/components/context";
 
-export const FourOhFour = () => {
-  const { title, description, linkHref, linkLabel, locale } = useNotFound();
-  const link = `/${locale}${linkHref}`.replace(/\/(?!.*\w)/, "") ?? `/${locale}`;
+export const FourOhFour: FC = () => {
+  const { title, description, linkHref, linkLabel } = useNotFound();
+  const link = `/${linkHref}`.replace(/\/(?!.*\w)/, "");
   return (
     <>
       <h1>

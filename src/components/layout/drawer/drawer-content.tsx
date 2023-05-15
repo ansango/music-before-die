@@ -1,10 +1,8 @@
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
-type Props = {
-  children: ReactNode;
-  className?: string;
-};
-
-export const DrawerContent: FC<Props> = ({ children, className }) => {
+export const DrawerContent: FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className,
+}) => {
   return <div className={`drawer-content ${className}`.trim()}>{children}</div>;
 };

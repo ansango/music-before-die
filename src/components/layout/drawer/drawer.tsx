@@ -1,12 +1,11 @@
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { useGlobalContext } from "@/components/context";
 
-type Props = {
+type Props = PropsWithChildren<{
   drawerId: string;
-  children: ReactNode;
   className?: string;
-};
+}>;
 
 export const Drawer: FC<Props> = ({ children, drawerId, className = "" }) => {
   return (

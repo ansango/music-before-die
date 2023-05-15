@@ -1,12 +1,15 @@
-import type { FC, ReactNode } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 type Props = {
-  drawerId: string;
   className?: string;
-  children?: ReactNode;
+  drawerId: string;
 };
 
-export const DrawerButton: FC<Props> = ({ drawerId, children, className = "" }) => {
+export const DrawerButton: FC<PropsWithChildren<Props>> = ({
+  drawerId,
+  children,
+  className = "",
+}) => {
   return (
     <label htmlFor={drawerId} className={className}>
       {children}
