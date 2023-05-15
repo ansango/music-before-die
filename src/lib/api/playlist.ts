@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import tina from "../../../tina/__generated__/client";
 
 export async function getPlaylists() {
@@ -17,4 +19,9 @@ export async function getPlaylist(relativePath: string) {
   return {
     playlist: playlist.data.playlists,
   };
+}
+
+export async function getContentPlaylist(relativePath: string) {
+  const content = await getPlaylist(`${relativePath}.mdx`);
+  return content?.playlist ?? notFound();
 }

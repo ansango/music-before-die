@@ -16,7 +16,8 @@
         "link": "src/content/pages/discos.mdx"
       },
       {
-        "label": "listas"
+        "label": "listas",
+        "link": "src/content/pages/listas.mdx"
       }
     ]
   }
