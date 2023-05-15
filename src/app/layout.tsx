@@ -29,7 +29,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-export default async function LocaleLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children }: LayoutProps) {
   const content = await getContent();
 
   const debugCn = process.env.NODE_ENV === "development" ? "debug-screens" : "";
