@@ -1,3 +1,3 @@
 export * from "./hooks";
-export * from "./cms";
+export * from "./api";
 export * from "./utils";

@@ -8,23 +8,15 @@
   "sitemap": {
     "sections": [
       {
-        "label": "Inicio",
-        "link": "src/content/pages/index.mdx"
-      },
-      {
-        "label": "About",
-        "link": "src/content/pages/sobre-nosotros.mdx"
-      },
-      {
-        "label": "Artistas",
+        "label": "artistas",
         "link": "src/content/pages/artistas.mdx"
       },
       {
-        "label": "Albums",
+        "label": "discos",
         "link": "src/content/pages/discos.mdx"
       },
       {
-        "label": "Playlists"
+        "label": "listas"
       }
     ]
   }

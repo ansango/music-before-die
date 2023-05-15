@@ -1,7 +1,5 @@
-import { notFound } from "next/navigation";
-
 import { PageBlocks } from "@/components/cms";
-import { getPages, getPage } from "@/lib";
+import { getPages, getContentPage } from "@/lib";
 
 type PageProps = {
   params: {
@@ -9,13 +7,9 @@ type PageProps = {
   };
 };
 
-export default async function Page({ params }: PageProps) {
-  const relativePath = `${params.filename}.mdx`;
-  const content = await getPage(relativePath);
-  if (!content || !content.page.blocks) notFound();
-  const { page } = content;
-
-  return <PageBlocks blocks={page.blocks} />;
+export default async function Page({ params: { filename } }: PageProps) {
+  const { blocks } = await getContentPage(filename);
+  return <PageBlocks blocks={blocks} />;
 }
 
 export async function generateStaticParams() {
