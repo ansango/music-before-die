@@ -2,12 +2,9 @@ import type { FC } from "react";
 
 import Link from "next/link";
 
-import { useGetLocale } from "@/lib";
-
 import { DefaultContainer } from "../utils";
 
 export const Footer: FC = () => {
-  const { locale } = useGetLocale();
   const navigation: { href: string; label: string }[] = [];
   const social: { href: string; label: string }[] = [];
   return (
@@ -16,7 +13,7 @@ export const Footer: FC = () => {
         <div>
           <span className="footer-title">Navigation</span>
           {navigation.map((item, i) => {
-            const route = `/${locale}/${item.href}`;
+            const route = `/`;
             return (
               <Link
                 className="link link-hover underline-offset-4"
