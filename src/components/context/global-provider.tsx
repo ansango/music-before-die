@@ -4,27 +4,16 @@ import type { FC, ReactNode } from "react";
 import { useContext, createContext } from "react";
 
 import type { ContentQuery as GlobalContent } from "../../../tina/__generated__/types";
-import rewrites from "../../config/rewrites.json";
 
 type Global = Partial<GlobalContent["global"]>;
 
-type Source = string;
-type Destination = string;
-
-type Rewrite = {
-  source: Source;
-  destination: Destination;
-};
-
 type GlobalContextType = Global & {
   globalDrawer?: string;
-  rewrites?: Array<Rewrite>;
 };
 const globalDrawer = "app-drawer";
 
 const initialValues: GlobalContextType = {
   globalDrawer,
-  rewrites,
 };
 
 const GlobalContext = createContext<GlobalContextType>(initialValues);

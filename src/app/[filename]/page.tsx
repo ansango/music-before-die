@@ -2,28 +2,16 @@ import { notFound } from "next/navigation";
 
 import type { BodySimpleProps, HeroBaseProps } from "@/components/cms";
 import { BodySimple, HeroBase } from "@/components/cms";
-import type { Locale } from "@/i18n";
 import { getPages, getPage } from "@/lib";
-
-export async function generateStaticParams({ params: { locale } }: { params: { locale: Locale } }) {
-  return ((await getPages()) ?? [])
-    .map((page) => ({
-      filename: page._sys?.filename,
-      locale: page.locale,
-    }))
-    .filter((page) => page.locale === locale);
-}
 
 type PageProps = {
   params: {
     filename: string;
-    locale: Locale;
   };
 };
 
 export default async function Page({ params }: PageProps) {
-  const relativePath = `${params.filename}.${params.locale}.mdx`;
-
+  const relativePath = `${params.filename}.mdx`;
   const content = await getPage(relativePath);
   if (!content || !content.page.blocks) notFound();
   const { page } = content;
@@ -48,4 +36,10 @@ export default async function Page({ params }: PageProps) {
       })}
     </>
   );
+}
+
+export async function generateStaticParams() {
+  return ((await getPages()) ?? []).map((page) => ({
+    filename: page._sys?.filename,
+  }));
 }

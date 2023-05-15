@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import type { Collection } from "tinacms";
 
-import { pageWithSeo } from "../objects";
+import { seo } from "../objects";
 
 export const playlistsCollection: Collection = {
   label: "Playlists",
@@ -10,11 +10,8 @@ export const playlistsCollection: Collection = {
   format: "mdx",
   ui: {
     filename: {
-      slugify: ({ filename_id, locale }) => {
-        const slug = filename_id && slugify(filename_id, { lower: true });
-        return locale ? `${slug}.${locale}` : slug;
-      },
+      slugify: ({ filename_id }) => filename_id && slugify(filename_id, { lower: true }),
     },
   },
-  fields: [...pageWithSeo],
+  fields: [seo],
 };

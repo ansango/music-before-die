@@ -1,93 +1,31 @@
 {
   "notFound": {
-    "en": {
-      "title": "Page not found",
-      "description": "The page you are looking for does not exist.",
-      "linkLabel": "Go back to the homepage",
-      "linkHref": "/"
-    },
-    "es": {
-      "title": "Página no encontrada",
-      "description": "La página que buscas no existe.",
-      "linkLabel": "Volver a la página de inicio",
-      "linkHref": "/"
-    },
-    "it": {
-      "title": "Nope",
-      "description": "nope",
-      "linkLabel": "torna indietro",
-      "linkHref": "/"
-    }
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe.",
+    "linkLabel": "Volver a la página de inicio",
+    "linkHref": "/"
   },
   "sitemap": {
-    "en": {
-      "sections": [
-        {
-          "label": "Home",
-          "link": "src/content/pages/index.en.mdx"
-        },
-        {
-          "label": "About",
-          "link": "src/content/pages/about.en.mdx"
-        },
-        {
-          "label": "Artists",
-          "link": "src/content/pages/artists.en.mdx"
-        },
-        {
-          "label": "Albums",
-          "link": "src/content/pages/albums.en.mdx"
-        },
-        {
-          "label": "Playlists"
-        }
-      ]
-    },
-    "es": {
-      "sections": [
-        {
-          "label": "Inicio",
-          "link": "src/content/pages/index.es.mdx"
-        },
-        {
-          "label": "About",
-          "link": "src/content/pages/about.es.mdx"
-        },
-        {
-          "label": "Artistas",
-          "link": "src/content/pages/artists.es.mdx"
-        },
-        {
-          "label": "Albums",
-          "link": "src/content/pages/albums.es.mdx"
-        },
-        {
-          "label": "Playlists"
-        }
-      ]
-    },
-    "it": {
-      "sections": [
-        {
-          "label": "Home",
-          "link": "src/content/pages/index.it.mdx"
-        },
-        {
-          "label": "Siamo noi",
-          "link": "src/content/pages/about.it.mdx"
-        },
-        {
-          "label": "Artisti",
-          "link": "src/content/pages/artists.it.mdx"
-        },
-        {
-          "label": "Albums",
-          "link": "src/content/pages/albums.it.mdx"
-        },
-        {
-          "label": "Playlists"
-        }
-      ]
-    }
+    "sections": [
+      {
+        "label": "Inicio",
+        "link": "src/content/pages/index.mdx"
+      },
+      {
+        "label": "About",
+        "link": "src/content/pages/sobre-nosotros.mdx"
+      },
+      {
+        "label": "Artistas",
+        "link": "src/content/pages/artistas.mdx"
+      },
+      {
+        "label": "Albums",
+        "link": "src/content/pages/discos.mdx"
+      },
+      {
+        "label": "Playlists"
+      }
+    ]
   }
 }

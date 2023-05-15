@@ -5,8 +5,7 @@ import Link from "next/link";
 import { usePagesNavigation } from "../../context";
 import { DrawerButton, useGlobalDrawerId } from "../drawer";
 import { DefaultContainer } from "../utils";
-
-import { LocaleSwitcher, ThemeSwitcher } from "./navigation";
+import { ThemeSwitcher } from "./navigation";
 
 export const Header: FC = () => {
   const navigation = usePagesNavigation();
@@ -39,7 +38,6 @@ export const Header: FC = () => {
           </ul>
         </nav>
 
-        <LocaleSwitcher />
         <ThemeSwitcher />
         <DrawerButton drawerId={drawerId} className="btn btn-circle btn-ghost lg:hidden">
           <svg

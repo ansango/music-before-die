@@ -3,7 +3,7 @@ import type { ChangeEvent } from "react";
 import slugify from "slugify";
 import type { Collection, TinaField } from "tinacms";
 
-import { pageWithSeo } from "../objects";
+import { seo } from "../objects";
 
 const genres = [
   "Rock",
@@ -155,5 +155,5 @@ export const albumsCollection: Collection = {
       },
     },
   },
-  fields: [...pageWithSeo, ...albumFields],
+  fields: [seo, ...albumFields],
 };
