@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import slugify from "slugify";
 
 import tina from "../../../tina/__generated__/client";
+import type { Artists } from "../../../tina/__generated__/types";
 
 export async function getArtists() {
   const artists = await tina.queries.artistsConnection();
@@ -50,5 +51,15 @@ export function matchArtistByGenre(genre: string, artists?: Array<ArtistWithGenr
 
 export async function getArtistsByGenre(genre: string) {
   const artists = (await getArtistsWithGenre()) as Array<ArtistWithGenres>;
-  return matchArtistByGenre(genre, artists) as unknown as typeof getArtistsWithGenre;
+  return matchArtistByGenre(genre, artists);
+}
+
+export async function getArtistsByLetter(letter: string) {
+  const artists = await getArtists();
+  console.log(artists);
+  return artists?.filter((artist) => artist.name?.toLowerCase()?.startsWith(letter));
+}
+
+export function matchArtistByLetter(letter: string, artists?: Array<Artists>) {
+  return artists?.filter((artist) => artist.name.toLowerCase()?.startsWith(letter));
 }
