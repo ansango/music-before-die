@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import slugify from "slugify";
 
 import tina from "../../../tina/__generated__/client";
 
@@ -24,4 +25,30 @@ export async function getArtist(relativePath: string) {
 export async function getContentArtist(relativePath: string) {
   const content = await getArtist(`${relativePath}.mdx`);
   return content?.artist ?? notFound();
+}
+
+export async function getArtistsWithGenre() {
+  const artists = await getArtists();
+  return artists?.map(({ albums, ...artist }) => ({
+    ...artist,
+    albums,
+    genres: albums?.flatMap((album) => album?.album.genres) || ([] as Array<string>),
+  }));
+}
+
+export type ArtistWithGenres = {
+  genres: Array<string>;
+  _sys?: {
+    filename: string;
+  };
+  name: string;
+};
+
+export function matchArtistByGenre(genre: string, artists?: Array<ArtistWithGenres>) {
+  return artists?.filter((artist) => artist.genres?.includes(slugify(genre, { lower: true })));
+}
+
+export async function getArtistsByGenre(genre: string) {
+  const artists = (await getArtistsWithGenre()) as Array<ArtistWithGenres>;
+  return matchArtistByGenre(genre, artists) as unknown as typeof getArtistsWithGenre;
 }
