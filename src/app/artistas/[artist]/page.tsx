@@ -2,16 +2,13 @@ import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 import { DefaultContainer } from "@/components";
-import { getArtists, getContentArtist } from "@/lib";
+import { getArtists, getContentArtist, replaceSrc } from "@/lib";
 
 type PageProps = {
   params: {
     artist: string;
   };
 };
-
-const replaceSource = (url: string) =>
-  url.replaceAll("src/content", "").replaceAll(".mdx", "").replaceAll("/albums", "/discos");
 
 export default async function ArtistPage({ params: { artist } }: PageProps) {
   const { body, albums } = await getContentArtist(artist);
@@ -24,12 +21,12 @@ export default async function ArtistPage({ params: { artist } }: PageProps) {
 
       <DefaultContainer className="grid max-w-screen-lg grid-cols-3 gap-4">
         {albums?.map((album) => {
-          console.log(album);
+          const id = album?.album.id || "";
           return (
             <Link
               className="p-4 bg-base-200 link link-hover underline-offset-4"
               key={album?.album.id}
-              href={replaceSource(album?.album.id || "")}
+              href={replaceSrc(id, "albums", "discos")}
             >
               {album?.album.name}
             </Link>
