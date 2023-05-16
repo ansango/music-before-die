@@ -1,8 +1,8 @@
 import slugify from "slugify";
 import type { Collection, TinaField } from "tinacms";
 
+import { replaceSrc } from "../../../src/lib/utils";
 import { links, seo } from "../objects";
-
 const artistFields: Array<TinaField> = [
   {
     type: "string",
@@ -23,6 +23,11 @@ const artistFields: Array<TinaField> = [
     name: "albums",
     description: "Albums of the artist",
     list: true,
+    ui: {
+      itemProps: (item) => ({
+        label: (item.album && replaceSrc(item.album, "albums", "discos")) || "",
+      }),
+    },
     fields: [
       {
         type: "reference",
