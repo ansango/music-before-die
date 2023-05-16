@@ -12,7 +12,7 @@ const artistFields: Array<TinaField> = [
     description: "Name of the artist",
   },
   {
-    type: "string",
+    type: "image",
     label: "Image",
     name: "image",
     description: "Image of the artist",
