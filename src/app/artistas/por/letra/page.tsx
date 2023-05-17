@@ -3,7 +3,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { DefaultContainer } from "@/components";
+import { ArtistNavigation, Breadcrumbs, DefaultContainer } from "@/components";
 import { getArtists, matchArtistByLetter } from "@/lib";
 
 import type { Artists } from "../../../../../tina/__generated__/types";
@@ -37,7 +37,7 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
 
               {areMore && (
                 <Link
-                  href={`/artistas/por/genero/${slugify(letter, { lower: true })}`}
+                  href={`/artistas/por/letra/${slugify(letter, { lower: true })}`}
                   className="p-4 bg-base-200 link link-hover underline-offset-4"
                 >
                   Ver más
@@ -53,5 +53,24 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
 
 export default async function Page() {
   const artists = (await getArtists()) as Array<Artists>;
-  return <ArtistsByLetter artists={artists} />;
+  return (
+    <>
+      <DefaultContainer className="max-w-screen-lg space-y-10">
+        <Breadcrumbs
+          links={[
+            {
+              href: "/artistas",
+              label: "Artistas",
+            },
+            {
+              href: "/artistas/por/letra",
+              label: "Letra",
+            },
+          ]}
+        />
+      </DefaultContainer>
+      <ArtistNavigation />
+      <ArtistsByLetter artists={artists} />;
+    </>
+  );
 }

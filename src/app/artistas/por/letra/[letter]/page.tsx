@@ -41,6 +41,11 @@ export default async function Page({ params: { letter } }: PageProps) {
   return (
     <>
       <DefaultContainer className="max-w-screen-lg space-y-10">
+        <Link href="/artistas/por/letra" className="link link-hover">
+          Volver
+        </Link>
+      </DefaultContainer>
+      <DefaultContainer className="max-w-screen-lg space-y-10">
         <h1 className="text-4xl font-bold">{letter}</h1>
       </DefaultContainer>
       <ArtistsByLetter artists={artists} />

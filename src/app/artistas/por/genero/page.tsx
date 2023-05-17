@@ -3,7 +3,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { DefaultContainer } from "@/components";
+import { ArtistNavigation, Breadcrumbs, DefaultContainer } from "@/components";
 import type { ArtistWithGenres } from "@/lib";
 import { matchArtistByGenre, getArtistsWithGenre } from "@/lib";
 
@@ -52,5 +52,24 @@ const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
 
 export default async function Page() {
   const artists = (await getArtistsWithGenre()) as Array<ArtistWithGenres>;
-  return <ArtistsByGenre artists={artists} />;
+  return (
+    <>
+      <DefaultContainer className="max-w-screen-lg space-y-10">
+        <Breadcrumbs
+          links={[
+            {
+              href: "/artistas",
+              label: "Artistas",
+            },
+            {
+              href: "/artistas/por/genero",
+              label: "Género",
+            },
+          ]}
+        />
+      </DefaultContainer>
+      <ArtistNavigation />
+      <ArtistsByGenre artists={artists} />
+    </>
+  );
 }

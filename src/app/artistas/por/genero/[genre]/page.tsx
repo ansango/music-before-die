@@ -40,6 +40,11 @@ export default async function Page({ params: { genre } }: PageProps) {
   return (
     <>
       <DefaultContainer className="max-w-screen-lg space-y-10">
+        <Link href="/artistas/por/genero" className="link link-hover">
+          Volver
+        </Link>
+      </DefaultContainer>
+      <DefaultContainer className="max-w-screen-lg space-y-10">
         <h1 className="text-4xl font-bold">{genre}</h1>
       </DefaultContainer>
       <ArtistsByGenre artists={artists} />
