@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-import { DefaultContainer } from "@/components";
 import { getArtists, getContentArtist, replaceSrc } from "@/lib";
 
 type PageProps = {
@@ -15,11 +14,9 @@ export default async function ArtistPage({ params: { artist } }: PageProps) {
 
   return (
     <>
-      <DefaultContainer className="max-w-screen-lg prose">
-        <TinaMarkdown content={body} />
-      </DefaultContainer>
+      <TinaMarkdown content={body} />
 
-      <DefaultContainer className="grid max-w-screen-lg grid-cols-3 gap-4">
+      <section className="grid grid-cols-3 gap-4">
         {albums?.map((album) => {
           const id = album?.album.id || "";
           return (
@@ -32,7 +29,7 @@ export default async function ArtistPage({ params: { artist } }: PageProps) {
             </Link>
           );
         })}
-      </DefaultContainer>
+      </section>
     </>
   );
 }

@@ -3,7 +3,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { ArtistNavigation, Breadcrumbs, DefaultContainer } from "@/components";
+import { ArtistNavigation } from "@/components";
 import type { ArtistWithGenres } from "@/lib";
 import { matchArtistByGenre, getArtistsWithGenre } from "@/lib";
 
@@ -13,7 +13,7 @@ type ArtistGenreProps = { artists: Array<ArtistWithGenres>; limit?: number };
 
 const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
   return (
-    <DefaultContainer className="max-w-screen-lg space-y-10">
+    <section className="space-y-10">
       {genres.map((genre) => {
         const artistsByGenre = matchArtistByGenre(genre, artists);
         const areMore = artistsByGenre && artistsByGenre.length > limit;
@@ -46,7 +46,7 @@ const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
           </div>
         );
       })}
-    </DefaultContainer>
+    </section>
   );
 };
 
@@ -54,20 +54,6 @@ export default async function Page() {
   const artists = (await getArtistsWithGenre()) as Array<ArtistWithGenres>;
   return (
     <>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <Breadcrumbs
-          links={[
-            {
-              href: "/artistas",
-              label: "Artistas",
-            },
-            {
-              href: "/artistas/por/genero",
-              label: "Género",
-            },
-          ]}
-        />
-      </DefaultContainer>
       <ArtistNavigation />
       <ArtistsByGenre artists={artists} />
     </>

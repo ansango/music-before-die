@@ -1,6 +1,5 @@
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-import { DefaultContainer } from "@/components";
 import { getAlbums, getArtists, getContentAlbum } from "@/lib";
 
 type PageProps = {
@@ -13,11 +12,7 @@ type PageProps = {
 export default async function AlbumPage({ params: { album, artist } }: PageProps) {
   const { body } = await getContentAlbum(`${artist}/${album}`);
 
-  return (
-    <DefaultContainer className="max-w-screen-lg prose">
-      <TinaMarkdown content={body} />
-    </DefaultContainer>
-  );
+  return <TinaMarkdown content={body} />;
 }
 
 export async function generateStaticParams() {

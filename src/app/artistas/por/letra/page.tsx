@@ -3,7 +3,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { ArtistNavigation, Breadcrumbs, DefaultContainer } from "@/components";
+import { ArtistNavigation } from "@/components";
 import { getArtists, matchArtistByLetter } from "@/lib";
 
 import type { Artists } from "../../../../../tina/__generated__/types";
@@ -14,7 +14,7 @@ type ArtistGenreProps = { artists: Array<Artists>; limit?: number };
 
 const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
   return (
-    <DefaultContainer className="max-w-screen-lg space-y-10">
+    <section className="space-y-10 py-container">
       {letters.map((letter) => {
         const artistsByLetter = matchArtistByLetter(letter, artists);
         const areMore = artistsByLetter && artistsByLetter.length > limit;
@@ -47,7 +47,7 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
           </div>
         );
       })}
-    </DefaultContainer>
+    </section>
   );
 };
 
@@ -55,22 +55,8 @@ export default async function Page() {
   const artists = (await getArtists()) as Array<Artists>;
   return (
     <>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <Breadcrumbs
-          links={[
-            {
-              href: "/artistas",
-              label: "Artistas",
-            },
-            {
-              href: "/artistas/por/letra",
-              label: "Letra",
-            },
-          ]}
-        />
-      </DefaultContainer>
       <ArtistNavigation />
-      <ArtistsByLetter artists={artists} />;
+      <ArtistsByLetter artists={artists} />
     </>
   );
 }

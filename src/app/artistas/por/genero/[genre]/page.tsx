@@ -3,7 +3,6 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { DefaultContainer } from "@/components";
 import type { ArtistWithGenres } from "@/lib";
 import { getArtistsWithGenre, matchArtistByGenre, getArtistsByGenre } from "@/lib";
 
@@ -13,19 +12,17 @@ type ArtistGenreProps = { artists: Array<ArtistWithGenres> };
 
 const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists }) => {
   return (
-    <DefaultContainer className="max-w-screen-lg space-y-10">
-      <div className="grid grid-cols-3 gap-4">
-        {artists?.map((artist) => (
-          <Link
-            key={artist._sys?.filename}
-            href={`/artistas/${artist._sys?.filename}`}
-            className="p-4 bg-base-200 link link-hover underline-offset-4"
-          >
-            {artist.name}
-          </Link>
-        ))}
-      </div>
-    </DefaultContainer>
+    <section className="grid grid-cols-3 gap-4">
+      {artists?.map((artist) => (
+        <Link
+          key={artist._sys?.filename}
+          href={`/artistas/${artist._sys?.filename}`}
+          className="p-4 bg-base-200 link link-hover underline-offset-4"
+        >
+          {artist.name}
+        </Link>
+      ))}
+    </section>
   );
 };
 
@@ -39,14 +36,10 @@ export default async function Page({ params: { genre } }: PageProps) {
   const artists = (await getArtistsByGenre(genre)) as Array<ArtistWithGenres>;
   return (
     <>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <Link href="/artistas/por/genero" className="link link-hover">
-          Volver
-        </Link>
-      </DefaultContainer>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <h1 className="text-4xl font-bold">{genre}</h1>
-      </DefaultContainer>
+      <Link href="/artistas/por/genero" className="link link-hover">
+        Volver
+      </Link>
+      <h1 className="text-4xl font-bold">{genre}</h1>
       <ArtistsByGenre artists={artists} />
     </>
   );

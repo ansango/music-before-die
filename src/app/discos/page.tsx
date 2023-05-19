@@ -1,17 +1,15 @@
 import Link from "next/link";
 
-import { DefaultContainer } from "@/components";
-import { PageBlocks } from "@/components/cms";
-import { getAlbums, getContentPage, replaceSrc } from "@/lib";
+import { AlbumNavigation, DefaultSection } from "@/components";
+import { getAlbums, replaceSrc } from "@/lib";
 
 export default async function Page() {
-  const { blocks } = await getContentPage("discos");
   const albums = await getAlbums();
 
   return (
     <>
-      <PageBlocks blocks={blocks} />
-      <DefaultContainer className="grid max-w-screen-lg grid-cols-3 gap-4">
+      <AlbumNavigation />
+      <DefaultSection className="grid grid-cols-3 gap-4">
         {albums?.map((album) => {
           const id = album?.id || "";
           return (
@@ -24,7 +22,7 @@ export default async function Page() {
             </Link>
           );
         })}
-      </DefaultContainer>
+      </DefaultSection>
     </>
   );
 }

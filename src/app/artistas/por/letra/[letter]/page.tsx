@@ -2,7 +2,6 @@ import type { FC } from "react";
 
 import Link from "next/link";
 
-import { DefaultContainer } from "@/components";
 import { getArtists, getArtistsByLetter, matchArtistByLetter } from "@/lib";
 
 import type { Artists } from "../../../../../../tina/__generated__/types";
@@ -13,19 +12,17 @@ type ArtistLetterProps = { artists: Array<Artists> };
 
 const ArtistsByLetter: FC<ArtistLetterProps> = ({ artists }) => {
   return (
-    <DefaultContainer className="max-w-screen-lg space-y-10">
-      <div className="grid grid-cols-3 gap-4">
-        {artists?.map((artist) => (
-          <Link
-            key={artist._sys?.filename}
-            href={`/artistas/${artist._sys?.filename}`}
-            className="p-4 bg-base-200 link link-hover underline-offset-4"
-          >
-            {artist.name}
-          </Link>
-        ))}
-      </div>
-    </DefaultContainer>
+    <section className="grid grid-cols-3 gap-4">
+      {artists?.map((artist) => (
+        <Link
+          key={artist._sys?.filename}
+          href={`/artistas/${artist._sys?.filename}`}
+          className="p-4 bg-base-200 link link-hover underline-offset-4"
+        >
+          {artist.name}
+        </Link>
+      ))}
+    </section>
   );
 };
 
@@ -40,14 +37,11 @@ export default async function Page({ params: { letter } }: PageProps) {
 
   return (
     <>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <Link href="/artistas/por/letra" className="link link-hover">
-          Volver
-        </Link>
-      </DefaultContainer>
-      <DefaultContainer className="max-w-screen-lg space-y-10">
-        <h1 className="text-4xl font-bold">{letter}</h1>
-      </DefaultContainer>
+      <Link href="/artistas/por/letra" className="link link-hover">
+        Volver
+      </Link>
+
+      <h1 className="text-4xl font-bold">{letter}</h1>
       <ArtistsByLetter artists={artists} />
     </>
   );

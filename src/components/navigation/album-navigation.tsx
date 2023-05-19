@@ -6,11 +6,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/artistas/por/genero", label: "Genero" },
-  { href: "/artistas/por/letra", label: "Letra" },
+  { href: "/discos", label: "Discos" },
+  { href: "/discos/destacados", label: "Destacados" },
+  { href: "/discos/mejor-valorados", label: "Mejor valorados" },
 ];
 
-export const ArtistNavigation: FC = () => {
+export const AlbumNavigation: FC = () => {
   const path = usePathname();
 
   return (
