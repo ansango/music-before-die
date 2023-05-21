@@ -3,9 +3,8 @@ import { join, extname } from "path";
 
 import slugify from "slugify";
 
-import { genres as globalGenres } from "../constants/genres.js";
-
 import { optionsSlugify } from "./content/config.mjs";
+import { genres as globalGenres } from "./genres.js";
 
 export const createFolder = (folderName, options) => {
   if (!existsSync(folderName)) {
