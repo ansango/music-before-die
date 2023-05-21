@@ -1,5 +1,4 @@
 export const genres = [
-  "Alternative",
   "Rock",
   "Post Rock",
   "Pop",

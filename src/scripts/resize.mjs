@@ -5,7 +5,22 @@ import sharp from "sharp";
 
 import { createFolder, getBase64FromUrl, getFilesFromFolder } from "./common.mjs";
 
-async function resize(inputPath, outputPath, outputBlurPath, format = "webp", quality = 85) {
+const input = "/public/images";
+const output = "/public/images/resized";
+const blur = "/src/constants/blur";
+
+const inputPath = process.cwd() + input;
+const outputPath = process.cwd() + output;
+const outputBlurPath = process.cwd() + blur;
+
+async function resize(
+  inputPath,
+  outputPath,
+  outputBlurPath,
+  format = "webp",
+  quality = 85,
+  mode = "square"
+) {
   console.log("Starting image resizing");
   console.log("Input path:", inputPath);
   createFolder(inputPath);
@@ -46,14 +61,14 @@ async function resize(inputPath, outputPath, outputBlurPath, format = "webp", qu
     const isLandscape = width > height;
     const isPortrait = width < height;
 
-    if (isLandscape) {
+    if (mode === "landscape" && isLandscape) {
       await image
         .webp({ quality, effort: 6 })
         .resize({ width: 720, height: 480, fit: "cover" })
         .toFile(
           path.join(outputFolder, path.basename(imagePath, path.extname(imagePath)) + outputExt)
         );
-    } else if (isPortrait) {
+    } else if (mode === "portrait" && isPortrait) {
       await image
         .webp({ quality, effort: 6 })
         .resize({ width: 480, height: 720, fit: "cover" })
@@ -68,12 +83,13 @@ async function resize(inputPath, outputPath, outputBlurPath, format = "webp", qu
           path.join(outputFolder, path.basename(imagePath, path.extname(imagePath)) + outputExt)
         );
     }
+
     console.log("Resized", imagePath);
     const base64 = await getBase64FromUrl(imagePath);
 
     jsonblur.push(
       JSON.stringify({
-        url: `/${subFolderPath}/${path.basename(imagePath, path.extname(imagePath)) + outputExt}`,
+        url: `${output}/${path.basename(imagePath, path.extname(imagePath)) + outputExt}`,
         img: base64,
       })
     );
@@ -91,8 +107,4 @@ async function resize(inputPath, outputPath, outputBlurPath, format = "webp", qu
   console.log("Total images:", images.length);
 }
 
-const inputPath = process.cwd() + "/public/images";
-const outputPath = process.cwd() + "/public/images/_output";
-const outputBlurPath = process.cwd() + "/src/constants/blur";
-
-resize(inputPath, outputPath, outputBlurPath, "webp", 80);
+resize(inputPath, outputPath, outputBlurPath, "webp", 80, "square");

@@ -50,7 +50,7 @@ export default async function RootLayout({ children }: LayoutProps) {
       <body className={cnBody}>
         <GlobalProvider content={content}>
           <DefaultLayout>
-            <DefaultMainTransition className="flex flex-col flex-1 w-full max-w-screen-lg p-4 mx-auto prose sm:p-6 md:p-12">
+            <DefaultMainTransition className="flex flex-col flex-1 w-full max-w-screen-xl p-4 mx-auto prose sm:p-6 md:p-12">
               {children}
             </DefaultMainTransition>
           </DefaultLayout>

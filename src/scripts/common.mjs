@@ -13,7 +13,7 @@ export const createFolder = (folderName, options) => {
   }
 };
 
-const extensions = [".mdx", ".jpg", ".jpeg", ".png", ".gif"];
+const extensions = [".mdx", ".jpg", ".jpeg", ".png", ".gif", ".avif"];
 
 export function getFilesFromFolder(folderPath) {
   let files = [];

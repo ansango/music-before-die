@@ -9,7 +9,7 @@ export const Footer: FC = () => {
   const social: { href: string; label: string }[] = [];
   return (
     <footer className="pt-20 bg-neutral">
-      <DefaultContainer className="max-w-screen-lg p-10 footer text-neutral-content">
+      <DefaultContainer className="max-w-screen-xl p-10 footer text-neutral-content">
         <div>
           <span className="footer-title">Navigation</span>
           {navigation.map((item, i) => {
