@@ -7,8 +7,7 @@
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "lint": "next lint",
-    "content": "node ./src/scripts/content/content.js",
-    "common": "node ./src/scripts/common.js"
+    "content": "NODE_OPTIONS='--experimental-json-modules' tsc ./src/constants/genres.ts && node ./src/scripts/content/content.mjs"
   },
   "dependencies": {
     "@tinacms/cli": "^1.5.11",

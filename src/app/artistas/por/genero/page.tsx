@@ -4,10 +4,9 @@ import Link from "next/link";
 import slugify from "slugify";
 
 import { ArtistNavigation } from "@/components";
+import { genres } from "@/constants/genres";
 import type { ArtistWithGenres } from "@/lib";
 import { matchArtistByGenre, getArtistsWithGenre } from "@/lib";
-
-import { genres } from "../../../../../tina/schema/objects";
 
 type ArtistGenreProps = { artists: Array<ArtistWithGenres>; limit?: number };
 

@@ -1,11 +1,16 @@
 [
-  "hard-rock",
-  "heavy-metal",
+  "alternative",
+  "britpop",
+  "electronic",
+  "experimental",
+  "funk",
+  "hardcore-punk",
   "hip-hop",
-  "metal",
-  "rap",
-  "seen-live",
-  "spanish",
-  "spanish-hip-hop",
-  "speed-metal"
+  "indie",
+  "post-hardcore",
+  "post-punk",
+  "post-rock",
+  "punk",
+  "reggae",
+  "rock"
 ]

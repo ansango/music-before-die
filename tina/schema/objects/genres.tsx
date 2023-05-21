@@ -3,31 +3,7 @@ import type { ChangeEvent } from "react";
 import slugify from "slugify";
 import type { TinaField } from "tinacms";
 
-export const genres = [
-  "Rock",
-  "Pop",
-  "Hip Hop",
-  "Electronic",
-  "Folk",
-  "Jazz",
-  "Classical",
-  "Latin",
-  "Reggae",
-  "Blues",
-  "Metal",
-  "Punk",
-  "Country",
-  "R&B",
-  "Soul",
-  "Funk",
-  "Disco",
-  "New Age",
-  "Ambient",
-  "Soundtrack",
-  "Indie",
-  "Alternative",
-  "Experimental",
-];
+import { genres } from "../../../src/constants/genres";
 
 const GenreInput = ({
   field,
@@ -47,7 +23,7 @@ const GenreInput = ({
           {field.description}
         </span>
       </label>
-      <div className="grid grid-cols-2 mb-5 md:grid-cols-3">
+      <div className="columns-2 md:columns-3">
         {genres.map((option) => {
           const value = slugify(option, { lower: true });
           return (
