@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <section className="space-y-10 py-container">
+    <section className="space-y-10">
       {Array.from({ length: 26 }, (_, i) => (
         <div key={i} className="space-y-5">
           <h2 className="text-2xl font-bold">{String.fromCharCode(97 + i)}</h2>

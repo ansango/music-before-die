@@ -13,7 +13,7 @@ type ArtistGenreProps = { artists: Array<Artists>; limit?: number };
 
 const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
   return (
-    <section className="space-y-10 py-container">
+    <section className="space-y-10">
       {letters.map((letter) => {
         const artistsByLetter = matchArtistByLetter(letter, artists);
         const areMore = artistsByLetter && artistsByLetter.length > limit;

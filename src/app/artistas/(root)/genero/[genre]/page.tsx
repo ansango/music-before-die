@@ -35,9 +35,6 @@ export default async function Page({ params: { genre } }: PageProps) {
   const artists = (await getArtistsByGenre(genre)) as Array<ArtistWithGenres>;
   return (
     <>
-      <Link href="/artistas/por/genero" className="link link-hover">
-        Volver
-      </Link>
       <h1 className="text-4xl font-bold">{genre}</h1>
       <ArtistsByGenre artists={artists} />
     </>

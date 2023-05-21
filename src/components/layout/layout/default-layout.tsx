@@ -18,7 +18,7 @@ export const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ThemeProvider {...config}>
       <GlobalDrawer>
-        <DrawerContent className="flex flex-col min-h-screen">
+        <DrawerContent className="flex flex-col min-h-screen py-container">
           <Header />
           {children}
           <Footer />

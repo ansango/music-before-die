@@ -37,10 +37,6 @@ export default async function Page({ params: { letter } }: PageProps) {
 
   return (
     <>
-      <Link href="/artistas/por/letra" className="link link-hover">
-        Volver
-      </Link>
-
       <h1 className="text-4xl font-bold">{letter}</h1>
       <ArtistsByLetter artists={artists} />
     </>

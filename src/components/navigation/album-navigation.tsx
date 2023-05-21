@@ -16,17 +16,19 @@ export const AlbumNavigation: FC = () => {
 
   return (
     <nav className="space-x-10 py-container">
-      {links.map(({ href, label }) => (
-        <Link
-          key={href}
-          href={href}
-          className={`link link-hover hover:underline-offset-4 ${
-            path === href ? "!underline-offset-4 underline" : ""
-          }`.trim()}
-        >
-          {label}
-        </Link>
-      ))}
+      {links.map(({ href, label }) => {
+        return (
+          <Link
+            key={href}
+            href={href}
+            className={`btn btn-ghost normal-case font-medium btn-sm ${
+              path === href ? "border-2 border-base-300" : ""
+            }`.trim()}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </nav>
   );
 };

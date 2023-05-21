@@ -2,7 +2,7 @@ import { genres } from "@/constants/genres";
 
 export default function Loading() {
   return (
-    <section className="space-y-10 py-container">
+    <section className="space-y-10">
       {Array.from(genres, (_, i) => (
         <div key={i} className="space-y-5">
           <h2 className="text-2xl font-bold">{genres[i].toLowerCase()}</h2>

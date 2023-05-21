@@ -11,15 +11,15 @@ type ArtistGenreProps = { artists: Array<ArtistWithGenres>; limit?: number };
 
 const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
   return (
-    <section className="space-y-10 py-container">
+    <section className="space-y-10">
       {genres.map((genre) => {
         const artistsByGenre = matchArtistByGenre(genre, artists);
         const areMore = artistsByGenre && artistsByGenre.length > limit;
         return artistsByGenre?.length === 0 ? null : (
           <>
             <div key={genre} className="space-y-5">
-              <h2 className="text-2xl font-bold">{genre.toLowerCase()}</h2>
-
+              <h2 className="mb-3 text-2xl font-bold ">{genre.toLowerCase()}</h2>
+              <div className="!m-0 divider" />
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {artistsByGenre
                   ?.map((artist) => (
