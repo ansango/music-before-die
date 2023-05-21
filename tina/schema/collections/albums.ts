@@ -41,6 +41,12 @@ const albumFields: Array<TinaField> = [
     name: "body",
     isBody: true,
   },
+  {
+    label: "Rating",
+    name: "rating",
+    type: "number",
+    description: "Rating of the album",
+  },
 ];
 
 export const albumsCollection: Collection = {

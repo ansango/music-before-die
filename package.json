@@ -7,7 +7,8 @@
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "lint": "next lint",
-    "content": "NODE_OPTIONS='--experimental-json-modules' tsc ./src/constants/genres.ts --outDir ./src/scripts && node ./src/scripts/content/content.mjs"
+    "content": "NODE_OPTIONS='--experimental-json-modules' tsc ./src/constants/genres.ts --outDir ./src/scripts && node ./src/scripts/content/content.mjs",
+    "resize": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/resize.mjs"
   },
   "dependencies": {
     "@tinacms/cli": "^1.5.11",
@@ -44,6 +45,7 @@
     "lint-staged": "^13.2.2",
     "postcss": "8.4.23",
     "prettier": "^2.8.8",
+    "sharp": "^0.32.1",
     "tailwindcss": "3.3.2",
     "tailwindcss-debug-screens": "^2.2.1",
     "tailwindcss-fluid-type": "^2.0.3",

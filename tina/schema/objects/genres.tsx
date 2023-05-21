@@ -16,7 +16,7 @@ const GenreInput = ({
   };
 }) => {
   return (
-    <div className="relative last:mb-0">
+    <div className="relative mb-5">
       <label className="block mb-2 font-sans text-xs font-semibold text-gray-700 whitespace-normal">
         {field.label}
         <span className="block font-sans text-xs italic font-light text-gray-400 pt-0.5 whitespace-normal m-0">

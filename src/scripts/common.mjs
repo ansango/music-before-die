@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, statSync } from "fs";
 import { join, extname } from "path";
 
+import sharp from "sharp";
 import slugify from "slugify";
 
 import { optionsSlugify } from "./content/config.mjs";
@@ -12,7 +13,7 @@ export const createFolder = (folderName, options) => {
   }
 };
 
-const extensions = [".mdx"];
+const extensions = [".mdx", ".jpg", ".jpeg", ".png", ".gif"];
 
 export function getFilesFromFolder(folderPath) {
   let files = [];
@@ -38,6 +39,12 @@ export const getLocalArtists = () => {
   const folderPath = process.cwd() + "/src/content/artists";
   const files = getFilesFromFolder(folderPath);
   return files.map((file) => file.replace(folderPath, "src/content/artists"));
+};
+
+export const getBase64FromUrl = async (url) => {
+  const minified = await sharp(url).resize(8).webp({ quality: 50 }).toBuffer();
+  const image = `data:image/webp;base64,${Buffer.from(minified).toString("base64")}`;
+  return image;
 };
 
 export const getGenres = () => globalGenres.map((genre) => slugify(genre, optionsSlugify));
