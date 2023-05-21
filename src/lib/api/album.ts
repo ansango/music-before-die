@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import tina from "../../../tina/__generated__/client";
 
 export async function getAlbums() {
-  const albums = await tina.queries.albumsConnection();
+  const albums = await tina.queries.albumsConnection({ first: -1 });
   return albums.data.albumsConnection.edges?.map((item) => ({ ...item?.node }));
 }
 

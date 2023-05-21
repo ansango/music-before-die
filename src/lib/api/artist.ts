@@ -5,7 +5,7 @@ import tina from "../../../tina/__generated__/client";
 import type { Artists } from "../../../tina/__generated__/types";
 
 export async function getArtists() {
-  const artists = await tina.queries.artistsConnection();
+  const artists = await tina.queries.artistsConnection({ first: -1 });
   return artists.data.artistsConnection.edges?.map((item) => ({ ...item?.node }));
 }
 
@@ -56,7 +56,6 @@ export async function getArtistsByGenre(genre: string) {
 
 export async function getArtistsByLetter(letter: string) {
   const artists = await getArtists();
-  console.log(artists);
   return artists?.filter((artist) => artist.name?.toLowerCase()?.startsWith(letter));
 }
 

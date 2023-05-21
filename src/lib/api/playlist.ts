@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import tina from "../../../tina/__generated__/client";
 
 export async function getPlaylists() {
-  const playlists = await tina.queries.playlistsConnection();
+  const playlists = await tina.queries.playlistsConnection({ first: -1 });
   return playlists.data.playlistsConnection.edges?.map((item) => ({ ...item?.node }));
 }
 

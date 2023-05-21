@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import tina from "../../../tina/__generated__/client";
 
 export async function getPages() {
-  const pages = await tina.queries.pagesConnection();
+  const pages = await tina.queries.pagesConnection({ first: -1 });
   return pages.data.pagesConnection.edges?.map((item) => ({ ...item?.node }));
 }
 

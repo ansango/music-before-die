@@ -2,7 +2,7 @@ import slugify from "slugify";
 import type { Collection, TinaField } from "tinacms";
 
 import { replaceSrc } from "../../../src/lib/utils";
-import { links, seo } from "../objects";
+import { genresField, links, seo } from "../objects";
 const artistFields: Array<TinaField> = [
   {
     type: "string",
@@ -38,7 +38,7 @@ const artistFields: Array<TinaField> = [
       },
     ],
   },
-
+  genresField,
   links({ name: "musicLinks", label: "Music Links" }),
   {
     type: "rich-text",

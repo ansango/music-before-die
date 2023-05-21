@@ -6,12 +6,15 @@
     "dev": "tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "content": "node ./src/scripts/content/content.js",
+    "common": "node ./src/scripts/common.js"
   },
   "dependencies": {
     "@tinacms/cli": "^1.5.11",
     "daisyui": "^2.51.6",
     "framer-motion": "^10.12.8",
+    "lastfm-client-ts": "^1.0.4-alpha.2",
     "next": "13.4.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
@@ -38,6 +41,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
+    "js-yaml": "^4.1.0",
     "lint-staged": "^13.2.2",
     "postcss": "8.4.23",
     "prettier": "^2.8.8",
