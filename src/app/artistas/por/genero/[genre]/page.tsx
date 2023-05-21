@@ -3,10 +3,9 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
+import { genres } from "@/constants/genres";
 import type { ArtistWithGenres } from "@/lib";
 import { getArtistsWithGenre, matchArtistByGenre, getArtistsByGenre } from "@/lib";
-
-import { genres } from "../../../../../../tina/schema/objects";
 
 type ArtistGenreProps = { artists: Array<ArtistWithGenres> };
 
