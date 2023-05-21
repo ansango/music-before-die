@@ -38,4 +38,4 @@ next-env.d.ts
 
 node_modules
 
-.content
+/.content/

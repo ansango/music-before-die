@@ -6,8 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/artistas/por/genero", label: "Genero" },
-  { href: "/artistas/por/letra", label: "Letra" },
+  { href: "/artistas/genero", label: "Genero" },
+  { href: "/artistas/letra", label: "Letra" },
 ];
 
 export const ArtistNavigation: FC = () => {

@@ -3,7 +3,6 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { ArtistNavigation } from "@/components";
 import { getArtists, matchArtistByLetter } from "@/lib";
 
 import type { Artists } from "../../../../../tina/__generated__/types";
@@ -22,7 +21,7 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
           <div key={letter} className="space-y-5">
             <h2 className="text-2xl font-bold">{letter.toLowerCase()}</h2>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {artistsByLetter
                 ?.map((artist) => (
                   <Link
@@ -53,10 +52,5 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
 
 export default async function Page() {
   const artists = (await getArtists()) as Array<Artists>;
-  return (
-    <>
-      <ArtistNavigation />
-      <ArtistsByLetter artists={artists} />
-    </>
-  );
+  return <ArtistsByLetter artists={artists} />;
 }

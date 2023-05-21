@@ -3,7 +3,6 @@ import type { FC } from "react";
 import Link from "next/link";
 import slugify from "slugify";
 
-import { ArtistNavigation } from "@/components";
 import { genres } from "@/constants/genres";
 import type { ArtistWithGenres } from "@/lib";
 import { matchArtistByGenre, getArtistsWithGenre } from "@/lib";
@@ -20,7 +19,7 @@ const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
           <div key={genre} className="space-y-5">
             <h2 className="text-2xl font-bold">{genre.toLowerCase()}</h2>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {artistsByGenre
                 ?.map((artist) => (
                   <Link
@@ -51,10 +50,5 @@ const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
 
 export default async function Page() {
   const artists = (await getArtistsWithGenre()) as Array<ArtistWithGenres>;
-  return (
-    <>
-      <ArtistNavigation />
-      <ArtistsByGenre artists={artists} />
-    </>
-  );
+  return <ArtistsByGenre artists={artists} />;
 }
