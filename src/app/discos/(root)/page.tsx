@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { DefaultSection } from "@/components";
+import { DefaultSection, Divider } from "@/components";
 import { getAlbums, replaceSrc } from "@/lib";
 
 export default async function Page() {
@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <>
       <h1 className="text-3xl font-bold">Todos los discos</h1>
-      <span className="my-2 divider" />
+      <Divider />
       <DefaultSection>
         <ul className="grid grid-cols-12 pl-0 sm:gap-5 md:gap-10">
           {albums?.map(({ id, _sys, name, artwork, artist, genres }) => {

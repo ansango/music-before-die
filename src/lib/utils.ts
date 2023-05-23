@@ -1,3 +1,5 @@
+import slug from "slugify";
+
 export const formatDate = (
   date: string | number | Date,
   locale = "es-ES",
@@ -17,3 +19,11 @@ export const replaceSrc = (
   collection: "albums" | "artists" | "pages" | "playlists",
   segment: string
 ) => url.replaceAll("src/content", "").replaceAll(".mdx", "").replaceAll(collection, segment);
+
+const optionsSlugify = {
+  lower: true,
+  remove: /[*+~.()'"!:@,.""]/g,
+  strict: true,
+};
+
+export const slugify = (str: string) => slug(str, optionsSlugify);

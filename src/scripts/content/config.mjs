@@ -1,5 +1,5 @@
 const user = "ansango";
-const period = "3month";
+const period = "6month";
 const limit = 20;
 
 export const config = {

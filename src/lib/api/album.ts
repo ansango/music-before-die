@@ -23,6 +23,7 @@ export async function getAlbum(relativePath: string) {
 
 export async function getContentAlbum(relativePath: string) {
   const content = await getAlbum(`${relativePath}.mdx`);
+
   return content?.album ?? notFound();
 }
 

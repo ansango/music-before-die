@@ -1,8 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { lastFmClient } from "lastfm-client-ts";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-import { formatDate, getAlbums, getArtists, getContentAlbum } from "@/lib";
+import { GreyCard, GreyCardList } from "@/components";
+import { formatDate, getAlbums, getArtists, getContentAlbum, replaceSrc, slugify } from "@/lib";
+
+const {
+  artistApiMethods: { getSimilar },
+} = lastFmClient();
 
 type PageProps = {
   params: {
@@ -11,16 +17,27 @@ type PageProps = {
   };
 };
 
+const getSimilarArtists = async (artist: string) => {
+  const {
+    similarartists: { artist: similar },
+  } = await getSimilar({ artist, limit: 500 });
+  const artistsSimilar = similar.map((artist) => slugify(artist.name));
+  const artists = await getArtists();
+  return artists?.filter((artist) => artistsSimilar.includes(slugify(artist.name ?? "")));
+};
+
 export default async function AlbumPage({ params: { album, artist } }: PageProps) {
   const {
-    body,
-    artist: band,
-    name,
-    release,
     artwork,
+    name,
+    artist: band,
+    release,
     genres,
     rating,
+    body,
   } = await getContentAlbum(`${artist}/${album}`);
+
+  const relatedArtists = await getSimilarArtists(band.name);
 
   return (
     <article>
@@ -42,7 +59,7 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
             ))}
           </ul>
           <div className="rating rating-half">
-            <input type="radio" name="rating-10" className="rating-hidden" />
+            <input type="radio" name="rating-10" className="!w-0 rating-hidden" />
             {Array.from({ length: 5 * 2 }, (_, i) => (i + 1) / 2).map((i) => {
               return (
                 <input
@@ -62,6 +79,19 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
       </section>
       <section>
         <TinaMarkdown content={body} />
+      </section>
+      <section>
+        <h3>Artistas similares</h3>
+        <GreyCardList>
+          {relatedArtists?.map((artist) => {
+            const id = artist.id ?? "";
+            return (
+              <GreyCard key={id} href={replaceSrc(id, "artists", "artistas")}>
+                {artist.name}
+              </GreyCard>
+            );
+          })}
+        </GreyCardList>
       </section>
     </article>
   );

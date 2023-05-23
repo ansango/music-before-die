@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
+import { GreyCard, GreyCardList } from "@/components";
 import { getArtists, getContentArtist, replaceSrc } from "@/lib";
 
 type PageProps = {
@@ -16,20 +16,16 @@ export default async function ArtistPage({ params: { artist } }: PageProps) {
     <>
       <TinaMarkdown content={body} />
 
-      <section className="grid grid-cols-3 gap-4">
+      <GreyCardList>
         {albums?.map((album) => {
           const id = album?.album.id || "";
           return (
-            <Link
-              className="p-4 bg-base-200 link link-hover underline-offset-4"
-              key={album?.album.id}
-              href={replaceSrc(id, "albums", "discos")}
-            >
+            <GreyCard key={id} href={replaceSrc(id, "albums", "discos")}>
               {album?.album.name}
-            </Link>
+            </GreyCard>
           );
         })}
-      </section>
+      </GreyCardList>
     </>
   );
 }

@@ -1,52 +1,39 @@
 import type { FC } from "react";
 
-import Link from "next/link";
-import slugify from "slugify";
-
+import { Divider, GreyCard, GreyCardList } from "@/components";
 import { genres } from "@/constants/genres";
 import type { ArtistWithGenres } from "@/lib";
-import { matchArtistByGenre, getArtistsWithGenre } from "@/lib";
+import { matchArtistByGenre, getArtistsWithGenre, slugify } from "@/lib";
 
 type ArtistGenreProps = { artists: Array<ArtistWithGenres>; limit?: number };
 
 const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
   return (
-    <section className="space-y-10">
+    <article className="space-y-10">
       {genres.map((genre) => {
         const artistsByGenre = matchArtistByGenre(genre, artists);
         const areMore = artistsByGenre && artistsByGenre.length > limit;
         return artistsByGenre?.length === 0 ? null : (
-          <>
-            <div key={genre} className="space-y-5">
+          <section key={genre} className="space-y-5">
+            <header>
               <h2 className="mt-0 mb-3 text-2xl font-bold ">{genre.toLowerCase()}</h2>
-              <div className="!m-0 divider" />
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {artistsByGenre
-                  ?.map((artist) => (
-                    <Link
-                      key={artist._sys?.filename}
-                      href={`/artistas/${artist._sys?.filename}`}
-                      className="p-4 bg-base-200 link link-hover underline-offset-4"
-                    >
-                      {artist.name}
-                    </Link>
-                  ))
-                  .slice(0, limit)}
+              <Divider />
+            </header>
+            <GreyCardList>
+              {artistsByGenre
+                ?.map((artist) => (
+                  <GreyCard key={artist._sys?.filename} href={`/artistas/${artist._sys?.filename}`}>
+                    {artist.name}
+                  </GreyCard>
+                ))
+                .slice(0, limit)}
 
-                {areMore && (
-                  <Link
-                    href={`/artistas/genero/${slugify(genre, { lower: true })}`}
-                    className="p-4 bg-base-200 link link-hover underline-offset-4"
-                  >
-                    Ver más
-                  </Link>
-                )}
-              </div>
-            </div>
-          </>
+              {areMore && <GreyCard href={`/artistas/genero/${slugify(genre)}`}>Ver más</GreyCard>}
+            </GreyCardList>
+          </section>
         );
       })}
-    </section>
+    </article>
   );
 };
 

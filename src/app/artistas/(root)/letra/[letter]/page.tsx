@@ -12,7 +12,7 @@ type ArtistLetterProps = { artists: Array<Artists> };
 
 const ArtistsByLetter: FC<ArtistLetterProps> = ({ artists }) => {
   return (
-    <section className="grid grid-cols-3 gap-4">
+    <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {artists?.map((artist) => (
         <Link
           key={artist._sys?.filename}

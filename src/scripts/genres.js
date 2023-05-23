@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.genres = void 0;
 exports.genres = [
-    "Alternative",
     "Rock",
     "Post Rock",
     "Pop",

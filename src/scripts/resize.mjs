@@ -5,7 +5,7 @@ import sharp from "sharp";
 
 import { createFolder, getBase64FromUrl, getFilesFromFolder } from "./common.mjs";
 
-const input = "/public/images";
+const input = "/.images";
 const output = "/public/images/resized";
 const blur = "/src/constants/blur";
 
