@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <>
       <h1 className="text-3xl font-bold">Todos los discos</h1>
-      <hr className="my-2" />
+      <span className="my-2 divider" />
       <DefaultSection>
         <ul className="grid grid-cols-12 pl-0 sm:gap-5 md:gap-10">
           {albums?.map(({ id, _sys, name, artwork, artist, genres }) => {

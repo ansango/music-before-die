@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <h1 className="text-3xl font-bold">Mejor valorados</h1>
-      <hr className="my-2" />
+      <span className="my-2 divider" />
       <DefaultSection></DefaultSection>
     </>
   );

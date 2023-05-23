@@ -18,7 +18,7 @@ const ArtistsByGenre: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
         return artistsByGenre?.length === 0 ? null : (
           <>
             <div key={genre} className="space-y-5">
-              <h2 className="mb-3 text-2xl font-bold ">{genre.toLowerCase()}</h2>
+              <h2 className="mt-0 mb-3 text-2xl font-bold ">{genre.toLowerCase()}</h2>
               <div className="!m-0 divider" />
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {artistsByGenre

@@ -19,8 +19,8 @@ const ArtistsByLetter: FC<ArtistGenreProps> = ({ artists, limit = 8 }) => {
         const areMore = artistsByLetter && artistsByLetter.length > limit;
         return artistsByLetter?.length === 0 ? null : (
           <div key={letter} className="space-y-5">
-            <h2 className="text-2xl font-bold">{letter.toLowerCase()}</h2>
-
+            <h2 className="mt-0 mb-3 text-2xl font-bold">{letter.toLowerCase()}</h2>
+            <div className="!m-0 divider" />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {artistsByLetter
                 ?.map((artist) => (
