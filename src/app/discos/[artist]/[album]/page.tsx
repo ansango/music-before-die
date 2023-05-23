@@ -72,10 +72,12 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
       <section>
         {tracklist && (
           <TracksTable
-            data={tracklist.map((track) => ({
-              name: track?.name,
-              duration: track?.duration,
-            }))}
+            data={
+              tracklist.map((track) => ({
+                name: track?.name,
+                duration: track?.duration,
+              })) as Array<{ name: string; duration: string }>
+            }
           />
         )}
       </section>
