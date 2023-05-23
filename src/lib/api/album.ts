@@ -25,3 +25,11 @@ export async function getContentAlbum(relativePath: string) {
   const content = await getAlbum(`${relativePath}.mdx`);
   return content?.album ?? notFound();
 }
+
+export async function getTopRatedAlbums() {
+  const albums = await tina.queries.albumsConnection({
+    first: -1,
+    sort: "rating_DESC",
+  });
+  return albums.data.albumsConnection.edges?.map((item) => ({ ...item?.node }));
+}

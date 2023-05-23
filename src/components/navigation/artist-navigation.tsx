@@ -12,7 +12,8 @@ const links = [
 
 export const ArtistNavigation: FC = () => {
   const path = usePathname();
-
+  const areSomeLink = links.some(({ href }) => href === path);
+  if (!areSomeLink) return null;
   return (
     <nav className="space-x-10 py-container">
       {links.map(({ href, label }) => {

@@ -9,24 +9,24 @@ export default async function Page() {
   return (
     <>
       <h1 className="text-3xl font-bold">Todos los discos</h1>
-      <div className="divider" />
+      <hr className="my-2" />
       <DefaultSection>
-        <ul className="grid grid-cols-12 gap-5 pl-0">
+        <ul className="grid grid-cols-12 pl-0 sm:gap-5 md:gap-10">
           {albums?.map(({ id, _sys, name, artwork, artist, genres }) => {
             return (
               <li
                 key={id}
-                className="col-span-12 pl-0 list-none sm:col-span-6 md:col-span-4 lg:col-span-3 card-compact bg-base-100"
+                className="w-full col-span-12 pl-0 list-none sm:col-span-6 md:col-span-4 lg:col-span-3 card card-compact bg-base-100"
               >
                 <Link
                   key={_sys?.filename}
                   href={replaceSrc(id ?? "", "albums", "discos")}
-                  className="no-underline"
+                  className="space-y-5 no-underline"
                 >
-                  <figure className="px-4 my-0">
+                  <figure className="p-0 my-0">
                     <img src={artwork} alt={name} />
                   </figure>
-                  <div className="card-body h-44">
+                  <div className="!p-0 card-body h-44">
                     <h3 className="mt-0 line-clamp-2 card-title">{artist?.name}</h3>
                     <h4 className="italic font-normal line-clamp-2">{name}</h4>
                     {genres
