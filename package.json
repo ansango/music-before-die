@@ -8,6 +8,7 @@
     "start": "tinacms build && next start",
     "lint": "next lint",
     "content": "NODE_OPTIONS='--experimental-json-modules' tsc ./src/constants/genres.ts --outDir ./src/scripts && node ./src/scripts/content/content.mjs",
+    "add-tracks": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/content/add-tracks.mjs",
     "resize": "NODE_OPTIONS='--experimental-json-modules' node ./src/scripts/resize.mjs"
   },
   "dependencies": {

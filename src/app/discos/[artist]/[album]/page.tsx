@@ -2,6 +2,7 @@
 
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
+import { TracksTable } from "@/components/table/TracksTable";
 import { formatDate, getAlbums, getArtists, getContentAlbum } from "@/lib";
 
 type PageProps = {
@@ -9,6 +10,10 @@ type PageProps = {
     artist: string;
     album: string;
   };
+};
+
+const components = {
+  TracksTable: TracksTable,
 };
 
 export default async function AlbumPage({ params: { album, artist } }: PageProps) {
@@ -20,6 +25,7 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
     genres,
     rating,
     body,
+    tracklist,
   } = await getContentAlbum(`${artist}/${album}`);
 
   return (
@@ -61,7 +67,17 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
         </div>
       </section>
       <section>
-        <TinaMarkdown content={body} />
+        <TinaMarkdown content={body} components={components} />
+      </section>
+      <section>
+        {tracklist && (
+          <TracksTable
+            data={tracklist.map((track) => ({
+              name: track?.name,
+              duration: track?.duration,
+            }))}
+          />
+        )}
       </section>
     </article>
   );

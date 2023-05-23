@@ -36,11 +36,42 @@ const albumFields: Array<TinaField> = [
   },
   genresField,
   {
+    type: "object",
+    label: "Tracklist",
+    name: "tracklist",
+    list: true,
+    ui: {
+      itemProps: (item) => ({
+        label: `${item.rank}. ${item.name} - ${item.duration}`,
+      }),
+    },
+    fields: [
+      {
+        type: "string",
+        label: "Name",
+        name: "name",
+        required: true,
+      },
+      {
+        type: "string",
+        label: "Duration",
+        name: "duration",
+        required: true,
+      },
+      {
+        type: "number",
+        label: "Rank",
+        name: "rank",
+      },
+    ],
+  },
+  {
     type: "rich-text",
     label: "Body",
     name: "body",
     isBody: true,
   },
+
   {
     label: "Rating",
     name: "rating",
