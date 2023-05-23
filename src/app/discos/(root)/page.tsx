@@ -24,7 +24,7 @@ export default async function Page() {
                   className="space-y-5 no-underline"
                 >
                   <figure className="p-0 my-0">
-                    <img src={artwork} alt={name} />
+                    <img src={artwork ?? ""} alt={name} />
                   </figure>
                   <div className="!p-0 card-body h-44">
                     <h3 className="mt-0 line-clamp-2 card-title">{artist?.name}</h3>

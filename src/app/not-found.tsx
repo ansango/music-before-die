@@ -1,4 +1,4 @@
-import { DefaultContainer, DefaultMainTransition, DefaultSection, FourOhFour } from "@/components";
+import { DefaultSection, FourOhFour } from "@/components";
 
 export default function NotFound() {
   return (
