@@ -45,7 +45,7 @@ export const Header: FC = () => {
   const navigation = usePagesNavigation();
 
   return (
-    <header className="w-full max-w-screen-xl p-0 mx-auto navbar bg-base-100 px-container">
+    <header className="w-full max-w-screen-xl p-0 mx-auto navbar min-h-fit bg-base-100 p-container">
       <div className="flex-1">
         <div className="flex-1">
           <Brand />

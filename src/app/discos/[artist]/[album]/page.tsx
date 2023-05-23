@@ -1,29 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { lastFmClient } from "lastfm-client-ts";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-import { GreyCard, GreyCardList } from "@/components";
-import { formatDate, getAlbums, getArtists, getContentAlbum, replaceSrc, slugify } from "@/lib";
-
-const {
-  artistApiMethods: { getSimilar },
-} = lastFmClient();
+import { formatDate, getAlbums, getArtists, getContentAlbum } from "@/lib";
 
 type PageProps = {
   params: {
     artist: string;
     album: string;
   };
-};
-
-const getSimilarArtists = async (artist: string) => {
-  const {
-    similarartists: { artist: similar },
-  } = await getSimilar({ artist, limit: 500 });
-  const artistsSimilar = similar.map((artist) => slugify(artist.name));
-  const artists = await getArtists();
-  return artists?.filter((artist) => artistsSimilar.includes(slugify(artist.name ?? "")));
 };
 
 export default async function AlbumPage({ params: { album, artist } }: PageProps) {
@@ -36,8 +21,6 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
     rating,
     body,
   } = await getContentAlbum(`${artist}/${album}`);
-
-  const relatedArtists = await getSimilarArtists(band.name);
 
   return (
     <article>
@@ -79,19 +62,6 @@ export default async function AlbumPage({ params: { album, artist } }: PageProps
       </section>
       <section>
         <TinaMarkdown content={body} />
-      </section>
-      <section>
-        <h3>Artistas similares</h3>
-        <GreyCardList>
-          {relatedArtists?.map((artist) => {
-            const id = artist.id ?? "";
-            return (
-              <GreyCard key={id} href={replaceSrc(id, "artists", "artistas")}>
-                {artist.name}
-              </GreyCard>
-            );
-          })}
-        </GreyCardList>
       </section>
     </article>
   );
